@@ -1,5 +1,6 @@
 import { useRef, useEffect } from 'react';
 import { Renderer, Program, Mesh, Triangle, Vec2 } from 'ogl';
+import { usePageVisibility } from './hooks/useReducedMotion';
 
 const vertex = `
 attribute vec2 position;
@@ -90,15 +91,17 @@ export default function DarkVeil({
   speed = 0.5,
   scanlineFrequency = 0,
   warpAmount = 0,
-  resolutionScale = 1
+  resolutionScale = 0.75 // Reduced from 1 to 0.75 for better performance
 }: Props) {
   const ref = useRef<HTMLCanvasElement>(null);
+  const isPageVisible = usePageVisibility();
+  
   useEffect(() => {
     const canvas = ref.current as HTMLCanvasElement;
     const parent = canvas.parentElement as HTMLElement;
 
     const renderer = new Renderer({
-      dpr: Math.min(window.devicePixelRatio, 2),
+      dpr: Math.min(window.devicePixelRatio, 1.5), // Reduced from 2 to 1.5
       canvas
     });
 
@@ -125,7 +128,7 @@ export default function DarkVeil({
       const w = parent.clientWidth,
         h = parent.clientHeight;
       renderer.setSize(w * resolutionScale, h * resolutionScale);
-      program.uniforms.uResolution.value.set(w, h);
+      program.uniforms['uResolution'].value.set(w, h);
     };
 
     window.addEventListener('resize', resize);
@@ -133,24 +136,29 @@ export default function DarkVeil({
 
     const start = performance.now();
     let frame = 0;
+    let isRunning = true;
 
     const loop = () => {
-      program.uniforms.uTime.value = ((performance.now() - start) / 1000) * speed;
-      program.uniforms.uHueShift.value = hueShift;
-      program.uniforms.uNoise.value = noiseIntensity;
-      program.uniforms.uScan.value = scanlineIntensity;
-      program.uniforms.uScanFreq.value = scanlineFrequency;
-      program.uniforms.uWarp.value = warpAmount;
-      renderer.render({ scene: mesh });
+      // Only run animation if page is visible
+      if (isPageVisible && isRunning) {
+        program.uniforms['uTime'].value = ((performance.now() - start) / 1000) * speed;
+        program.uniforms['uHueShift'].value = hueShift;
+        program.uniforms['uNoise'].value = noiseIntensity;
+        program.uniforms['uScan'].value = scanlineIntensity;
+        program.uniforms['uScanFreq'].value = scanlineFrequency;
+        program.uniforms['uWarp'].value = warpAmount;
+        renderer.render({ scene: mesh });
+      }
       frame = requestAnimationFrame(loop);
     };
 
     loop();
 
     return () => {
+      isRunning = false;
       cancelAnimationFrame(frame);
       window.removeEventListener('resize', resize);
     };
-  }, [hueShift, noiseIntensity, scanlineIntensity, speed, scanlineFrequency, warpAmount, resolutionScale]);
+  }, [hueShift, noiseIntensity, scanlineIntensity, speed, scanlineFrequency, warpAmount, resolutionScale, isPageVisible]);
   return <canvas ref={ref} className="w-full h-full block" />;
 }

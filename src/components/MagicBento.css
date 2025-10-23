@@ -24,7 +24,7 @@
   padding: 2rem;
   border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, 0.12);
-  background: radial-gradient(circle at top left, rgba(88, 166, 255, 0.1), transparent 55%),
+  background: radial-gradient(circle at top left, rgba(72, 227, 255, 0.1), transparent 55%),
     rgba(10, 10, 18, 0.8);
   color: #f7f7f7;
   overflow: hidden;
@@ -39,7 +39,7 @@
   position: absolute;
   inset: -100%;
   background: radial-gradient(circle at var(--magic-glow-x, 50%) var(--magic-glow-y, 50%),
-      rgba(var(--magic-glow-color, 132, 0, 255), calc(var(--magic-glow-intensity, 0) * 0.25)) 0%,
+  rgba(var(--magic-glow-color, 72, 227, 255), calc(var(--magic-glow-intensity, 0) * 0.25)) 0%,
       transparent calc(var(--magic-glow-radius, 280px) * 0.4));
   opacity: 0;
   transition: opacity 0.4s ease;
@@ -52,7 +52,7 @@
 
 .magic-card--border-glow {
   border: 1px solid rgba(255, 255, 255, 0.18);
-  box-shadow: 0 25px 60px rgba(88, 166, 255, 0.15);
+  box-shadow: 0 25px 60px rgba(72, 227, 255, 0.15);
 }
 
 .magic-card--text-autohide .magic-card__description {
