@@ -19,7 +19,7 @@ export default function TechStackSection() {
       <div className="container section__layout">
         <div className="section__intro">
           <p className="eyebrow">Tooling</p>
-          <h2>Best-in-class technologies, thoughtfully integrated.</h2>
+          <h2 className="metallic-heading">Best-in-class technologies, thoughtfully integrated.</h2>
           <p>
             We remain vendor-agnostic and curate the right combination of models, infrastructure, and interfaces for each
             environment. Our engineers have shipped production workloads on all major clouds, orchestrated vector search

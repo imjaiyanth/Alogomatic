@@ -1,59 +1,70 @@
+import { useState } from 'react';
+
 const steps = [
   {
-    title: 'Diagnose',
-    description:
-      'We co-create clarity on the business challenge, align stakeholders, and benchmark success metrics before any line of code is written.'
+    number: '1',
+    title: 'Discover & Strategize',
+    description: 'We listen to your goals and study your business, then create a clear, custom plan made just for you.'
   },
   {
-    title: 'Design',
-    description:
-      'Rapid experimentation with interactive prototypes, system architecture, and prompt engineering to validate the experience early.'
+    number: '2',
+    title: 'Create & Deliver',
+    description: 'We design a solution just for you, choosing only the services that make sense for your goals. Whether it\'s 3D configurators, IoT apps, or AI workflows, we deliver exactly what your business needs to grow.'
   },
   {
-    title: 'Deploy',
-    description:
-      'Ship production-ready solutions with observability, human-in-the-loop safeguards, and training to drive adoption.'
+    number: '3',
+    title: 'Launch & Improve',
+    description: 'We launch your services and watch results closely, making smart updates to boost your outcomes.'
   },
   {
-    title: 'Scale',
-    description:
-      'Continuously optimize models, expand integrations, and instrument feedback loops that compound the value of automation.'
+    number: '4',
+    title: 'Support & Grow',
+    description: 'We don\'t stop at the launch. We analyze performance, gather feedback, and fine-tune to ensure your solutions keep evolving and thriving.'
   }
 ];
 
 export default function ApproachSection() {
+  const [activeStep, setActiveStep] = useState(0);
+
   return (
-    <section className="section" id="approach">
-      <div className="container section__layout">
-        <div className="section__intro">
-          <p className="eyebrow">How we build</p>
-          <h2>A playbook built for speed, rigor, and lasting impact.</h2>
-          <p>
-            Meghamsys blends design thinking with responsible AI delivery. Each phase of our approach is designed to
-            keep humans in the loop while accelerating time-to-value. We partner closely with internal stakeholders to
-            co-create a shared definition of success and deploy automation that augments teams instead of replacing them.
-            The journey moves from sharp diagnosis to scaled operations, ensuring every AI copilot or workflow is measured,
-            observable, and continuously improved.
-          </p>
+    <section className="process-section" id="approach">
+      <div className="container">
+        <div className="process-section__header">
+          <h2 className="process-section__title">Our Approach</h2>
         </div>
-        <div className="section__content">
-          <ol className="timeline" aria-label="Delivery process">
+
+        <div className="process-section__layout">
+          {/* Main content card */}
+          <div className="process-section__main-card">
+            <div className="process-step__number-large">{steps[activeStep]?.number}</div>
+            <h3 className="process-step__title-large">{steps[activeStep]?.title}</h3>
+            <p className="process-step__description-large">{steps[activeStep]?.description}</p>
+          </div>
+
+          {/* Vertical pills for all steps */}
+          <div className="process-section__pills">
             {steps.map((step, index) => (
-              <li key={step.title}>
-                <div className="timeline__index">{String(index + 1).padStart(2, '0')}</div>
-                <div>
-                  <h3>{step.title}</h3>
-                  <p>{step.description}</p>
-                </div>
-              </li>
+              <button
+                key={index}
+                className={`process-pill ${activeStep === index ? 'process-pill--active' : ''}`}
+                onClick={() => setActiveStep(index)}
+              >
+                <span className="process-pill__number">{step.number}</span>
+              </button>
             ))}
-          </ol>
-          <p className="timeline__summary">
-            Collaboration continues beyond launch. We conduct retrospectives, capability hand-offs, and executive
-            readouts so teams understand how automation affects KPIs. When you are ready to extend into new markets or
-            domains, Meghamsys stands up a new roadmap, leveraging performance data to prioritize the next highest-value
-            copilots. Discover how this connects to real results in our <a href="#work">selected work</a> section.
+          </div>
+        </div>
+
+        <div className="process-section__cta">
+          <p className="process-section__cta-text">
+            You focus on doing what you love, running your business — I'll handle the tech.
           </p>
+          <a href="#contact" className="process-section__button">
+            Start Your Project
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </a>
         </div>
       </div>
     </section>
