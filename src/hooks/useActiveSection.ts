@@ -9,10 +9,16 @@ type NormalizedSection = {
 
 const DEFAULT_SECTIONS: NormalizedSection[] = [
   { id: 'home', threshold: 0.55 },
+  { id: 'about', threshold: 0.4 },
   { id: 'services', threshold: 0.4 },
-  { id: 'approach', threshold: 0.4 },
-  { id: 'work', threshold: 0.35 },
+  { id: 'delivery', threshold: 0.35 },
+  { id: 'solutions', threshold: 0.35 },
+  { id: 'impact', threshold: 0.35 },
+  { id: 'industries', threshold: 0.35 },
   { id: 'tech', threshold: 0.35 },
+  { id: 'faq', threshold: 0.35 },
+  { id: 'insights', threshold: 0.35 },
+  { id: 'accessibility', threshold: 0.3 },
   { id: 'contact', threshold: 0.25 }
 ];
 

@@ -26,6 +26,22 @@ const initialFormData: FormData = {
   budget: ''
 };
 
+const SALES_EMAIL = 'sales@meghamsys.com';
+const FORM_ENDPOINT = (import.meta.env['VITE_CONTACT_FORM_ENDPOINT'] as string | undefined) ?? '';
+
+const encodeMailtoBody = (data: FormData) => {
+  const lines = [
+    `Name: ${data.name}`,
+    `Email: ${data.email}`,
+    `Interest: ${data.interest}`,
+    data.budget ? `Budget: ${data.budget}` : null,
+    '',
+    data.details || 'Project details pending'
+  ].filter(Boolean);
+
+  return encodeURIComponent(lines.join('\n'));
+};
+
 export default function useContactForm(): UseContactFormReturn {
   const [formData, setFormData] = useState<FormData>(initialFormData);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -43,12 +59,20 @@ export default function useContactForm(): UseContactFormReturn {
     setIsSubmitting(true);
     setError(null);
 
+    if (!FORM_ENDPOINT) {
+      const subject = encodeURIComponent('New inquiry via meghamsys.com');
+      const body = encodeMailtoBody(formData);
+      window.location.href = `mailto:${SALES_EMAIL}?subject=${subject}&body=${body}`;
+      setIsSubmitting(false);
+      return;
+    }
+
     try {
-      // Option 1: Use Formspree, Web3Forms, or similar service
-      const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+      const response = await fetch(FORM_ENDPOINT, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
         },
         body: JSON.stringify(formData)
       });
@@ -60,11 +84,9 @@ export default function useContactForm(): UseContactFormReturn {
       setIsSuccess(true);
       setFormData(initialFormData);
 
-      // Reset success message after 5 seconds
       setTimeout(() => {
         setIsSuccess(false);
       }, 5000);
-
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred. Please try again.');
     } finally {

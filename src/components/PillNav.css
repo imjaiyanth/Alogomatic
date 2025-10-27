@@ -20,8 +20,8 @@
 .pill-nav {
   --nav-h: 44px;
   --logo: 40px;
-  --pill-pad-x: 16px;
-  --pill-gap: 3px;
+  --pill-pad-x: 18px;
+  --pill-gap: 8px;
   --base: rgba(6, 6, 12, 0.92);
   --pill-bg: rgba(255, 255, 255, 0.08);
   --pill-text: #f5f5f5;
@@ -39,9 +39,18 @@
   box-sizing: border-box;
 }
 
+@media (max-width: 1024px) {
+  .pill-nav {
+    --pill-pad-x: 16px;
+    --pill-gap: 6px;
+  }
+}
+
 @media (max-width: 768px) {
   .pill-nav {
     --nav-h: 48px;
+    --pill-pad-x: 16px;
+    --pill-gap: 6px;
     padding: 0.35rem 0.6rem;
     border-radius: 36px;
     border: 1px solid rgba(255, 255, 255, 0.18);
@@ -196,8 +205,8 @@
   border-radius: 9999px;
   box-sizing: border-box;
   font-weight: 600;
-  font-size: 16px;
-  line-height: 0;
+  font-size: 0.88rem;
+  line-height: 1;
   text-transform: uppercase;
   letter-spacing: 0.2px;
   white-space: nowrap;

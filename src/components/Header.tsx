@@ -13,11 +13,15 @@ export default function Header() {
         brandName="Meghamsys"
         items={[
           { label: 'Home', href: '#home' },
-          { label: 'About Us', href: '#about' },
+          { label: 'About', href: '#about' },
           { label: 'Services', href: '#services' },
+          { label: 'Delivery', href: '#delivery' },
           { label: 'Solutions', href: '#solutions' },
+          { label: 'Impact', href: '#impact' },
           { label: 'Industries', href: '#industries' },
-          { label: 'Contact Us', href: '#contact' }
+          { label: 'FAQ', href: '#faq' },
+          { label: 'Insights', href: '#insights' },
+          { label: 'Contact', href: '#contact' }
         ]}
         activeHref={activeHref}
         onItemActivate={setActiveHref}
