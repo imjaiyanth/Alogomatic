@@ -27,7 +27,8 @@ const initialFormData: FormData = {
 };
 
 const SALES_EMAIL = 'sales@meghamsys.com';
-const FORM_ENDPOINT = (import.meta.env['VITE_CONTACT_FORM_ENDPOINT'] as string | undefined) ?? '';
+const DEFAULT_ENDPOINT = `https://formsubmit.co/ajax/${SALES_EMAIL}`;
+const FORM_ENDPOINT = (import.meta.env['VITE_CONTACT_FORM_ENDPOINT'] as string | undefined) ?? DEFAULT_ENDPOINT;
 
 const encodeMailtoBody = (data: FormData) => {
   const lines = [
@@ -59,14 +60,6 @@ export default function useContactForm(): UseContactFormReturn {
     setIsSubmitting(true);
     setError(null);
 
-    if (!FORM_ENDPOINT) {
-      const subject = encodeURIComponent('New inquiry via meghamsys.com');
-      const body = encodeMailtoBody(formData);
-      window.location.href = `mailto:${SALES_EMAIL}?subject=${subject}&body=${body}`;
-      setIsSubmitting(false);
-      return;
-    }
-
     try {
       const response = await fetch(FORM_ENDPOINT, {
         method: 'POST',
@@ -88,7 +81,12 @@ export default function useContactForm(): UseContactFormReturn {
         setIsSuccess(false);
       }, 5000);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred. Please try again.');
+      const subject = encodeURIComponent('New inquiry via meghamsys.com');
+      const body = encodeMailtoBody(formData);
+      window.location.href = `mailto:${SALES_EMAIL}?subject=${subject}&body=${body}`;
+      setError(
+        'We could not submit automatically. We opened your email client so you can send the details directly.'
+      );
     } finally {
       setIsSubmitting(false);
     }
