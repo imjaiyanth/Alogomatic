@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import DarkVeil from '../DarkVeil';
 import RotatingText from './RotatingText';
 
@@ -14,8 +15,8 @@ export default function Hero() {
             <div className="hero__halo hero__halo--primary" />
             <div className="hero__halo hero__halo--secondary" />
             <div className="hero__ticker">
-              <span>3D CONFIGURATORS | IOT APPS | AI WORKFLOWS | FULLSTACK DEV | AUTOMATION | </span>
-              <span>3D CONFIGURATORS | IOT APPS | AI WORKFLOWS | FULLSTACK DEV | AUTOMATION | </span>
+              <span>IOT PLATFORMS | MOBILE APPS | AI WORKFLOWS | FULLSTACK DEV | AUTOMATION | </span>
+              <span>IOT PLATFORMS | MOBILE APPS | AI WORKFLOWS | FULLSTACK DEV | AUTOMATION | </span>
             </div>
           </div>
           <span className="hero__badge">Alogomatic · Full-Stack Developer & AI Specialist</span>
@@ -23,12 +24,12 @@ export default function Hero() {
             <span className="hero__title-text">I build</span>{' '}
             <span className="hero__rotating" aria-live="polite">
               <RotatingText
-                texts={[
-                  '3D configurators',
-                  'IoT mobile apps',
+                texts=[
+                  'IoT platforms',
+                  'Device mobile apps',
                   'AI workflows',
                   'Web applications',
-                ]}
+                ]
                 mainClassName="hero__rotating-text"
                 splitLevelClassName="hero__rotating-split"
                 elementLevelClassName="hero__rotating-char"
@@ -44,29 +45,29 @@ export default function Hero() {
             <span className="hero__title-text">that solve real problems.</span>
           </h1>
           <p className="hero__summary">
-            Full-stack developer specializing in 3D product configurators for mechanical industries, 
-            IoT mobile applications, and AI-powered automation workflows. 5 applications shipped, 
+            Full-stack developer specializing in IoT platforms for industrial teams, 
+            cross-platform device apps, and AI-powered automation workflows. 5 applications shipped, 
             50+ AI agents deployed.
           </p>
           <ul className="hero__points">
-            <li><strong>3D Configurators:</strong> Interactive product visualizers for mechanical/manufacturing companies with real-time customization</li>
+            <li><strong>IoT Platforms:</strong> Command centres that connect device telemetry, service workflows, and business systems</li>
             <li><strong>IoT Mobile Apps:</strong> Cross-platform iOS & Android applications for industrial IoT devices and sensors</li>
             <li><strong>AI Automation:</strong> 50+ intelligent workflows using n8n and CrewAI for business process automation</li>
           </ul>
           <div className="hero__actions">
-            <a className="button" href="#contact">
+            <Link className="button" to="/contact">
               Let's discuss your project
-            </a>
-            <a className="button button--ghost" href="#work">
+            </Link>
+            <Link className="button button--ghost" to="/services">
               View portfolio
-            </a>
+            </Link>
           </div>
           <div className="hero__trust">
             <span className="hero__trust-label">Technologies & expertise</span>
             <ul className="hero__trust-list" aria-label="Core technologies">
               <li>React & Node.js</li>
               <li>Python & AI</li>
-              <li>3D Visualization</li>
+              <li>IoT Architecture</li>
             </ul>
           </div>
         </div>

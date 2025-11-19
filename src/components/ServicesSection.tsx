@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import MagicBento from './MagicBento';
 
 const SERVICE_CARDS = [
@@ -46,7 +47,7 @@ export default function ServicesSection() {
           <div className="section__cta-card">
             <span className="section__cta-pill">Need a tailored roadmap?</span>
             <p>
-              We scope joint squads in under a week—<a href="#contact">connect with our strategists</a> to co-design the first sprint.
+              We scope joint squads in under a week—<Link to="/contact">connect with our strategists</Link> to co-design the first sprint.
             </p>
           </div>
         </div>

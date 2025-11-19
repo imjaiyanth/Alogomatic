@@ -11,7 +11,7 @@ export default function ContactSection() {
           <h2>Let's discuss your project.</h2>
           <p>
             I work with businesses that need a technical partner for specialized projects—
-            3D configurators, IoT apps, AI automation, or full-stack development. 
+            IoT platforms, connected device apps, AI automation, or full-stack development. 
           </p>
           <p>
             Whether you need an MVP, proof-of-concept, or a specific technical solution, 
@@ -37,7 +37,7 @@ export default function ContactSection() {
             <div className="info-box">
               <h4>Ideal Projects</h4>
               <ul>
-                <li>3D product configurators for manufacturers</li>
+                <li>IoT operations platforms for manufacturers</li>
                 <li>IoT mobile apps (iOS & Android)</li>
                 <li>AI workflow automation (50+ built)</li>
                 <li>Custom web applications (React/Node/Python)</li>
@@ -106,7 +106,7 @@ export default function ContactSection() {
               disabled={isSubmitting}
             >
               <option value="" disabled>Select your project type</option>
-              <option>3D Product Configurator</option>
+              <option>IoT Operations Platform</option>
               <option>IoT Mobile App (iOS/Android)</option>
               <option>AI Workflow Automation</option>
               <option>Full-Stack Web Application</option>

@@ -1,24 +1,25 @@
+import { Link } from 'react-router-dom';
 import DarkVeil from '../DarkVeil';
 import RotatingText from './RotatingText';
 
 const statChips = [
-  { value: '50+', label: 'AI products shipped for growth-focused teams' },
-  { value: '98%', label: 'Client satisfaction across long-term retainers' },
-  { value: '12x', label: 'Average efficiency lift within the first 90 days' }
+  { value: '35+', label: 'Connected platforms launched for global B2B teams' },
+  { value: '97%', label: 'Stakeholder satisfaction across transformation programs' },
+  { value: '90 days', label: 'Average runway from blueprint to live IoT cockpit' }
 ];
 
 const servicesList = [
-  'AI copilots & automation',
-  'Conversion-focused web experiences',
-  'Personalized chat assistants',
-  '3D product visualisation'
+  'IoT telemetry & device management',
+  'Operations-grade digital portals',
+  'AI copilots for field & support',
+  'Data governance & analytics'
 ];
 
 const processSteps = [
-  { number: '01', title: 'Discover', summary: 'Understand goals, audience, and current gaps.' },
-  { number: '02', title: 'Design', summary: 'Plan the right mix of AI, web, and automation services.' },
-  { number: '03', title: 'Launch', summary: 'Ship fast, measure results, and refine with real feedback.' },
-  { number: '04', title: 'Grow', summary: 'Support your team and keep scaling what works.' }
+  { number: '01', title: 'Co-design', summary: 'Map journeys, metrics, and governance with business and product leads.' },
+  { number: '02', title: 'Prototype', summary: 'Shape north-star UX, architecture, and data flows before writing code.' },
+  { number: '03', title: 'Launch', summary: 'Ship instrumented experiences with enablement and change playbooks.' },
+  { number: '04', title: 'Scale', summary: 'Expand integrations, automation, and insights with a measured roadmap.' }
 ];
 
 export default function Hero() {
@@ -30,11 +31,11 @@ export default function Hero() {
       <div className="hero__gradient" aria-hidden="true" />
       <div className="container hero__layout hero__layout--balanced">
         <div className="hero__intro hero__intro--simple">
-          <span className="hero__badge">Meghamsys · AI & Automation Studio</span>
+          <span className="hero__badge">Meghamsys · Connected Product Studio</span>
           <h1 className="hero__title">
             <span className="metallic-heading">We craft</span>{' '}
             <RotatingText
-              texts={['Configurators', 'Web Apps', 'Chatbots', 'AI Automation']}
+              texts={['IoT Platforms', 'Device Dashboards', 'Field Service Tools', 'AI Automation']}
               rotationInterval={2500}
               staggerDuration={0.03}
               transition={{ type: 'spring', damping: 30, stiffness: 250 }}
@@ -43,18 +44,18 @@ export default function Hero() {
             <span className="metallic-heading">that feel inevitable.</span>
           </h1>
           <p className="hero__summary hero__summary--wide">
-            Our team partners with ambitious businesses to design conversion-ready websites, AI assistants, and automation flows that drive measurable revenue—not vanity metrics.
+            We partner with ambitious B2B teams to build IoT platforms, portals, and AI copilots that look enterprise-ready and deliver measurable adoption—not vanity demos.
           </p>
           <div className="hero__guarantee">
-            If we don’t deliver adoption-worthy results, we stay on until you do.
+            If we don’t land the clarity and outcomes your stakeholders expect, we stay on until it’s real.
           </div>
           <div className="hero__actions">
-            <a className="button" href="#contact">
+            <Link className="button" to="/contact">
               Book a call
-            </a>
-            <a className="button button--ghost" href="#about">
+            </Link>
+            <Link className="button button--ghost" to="/about">
               Learn about us
-            </a>
+            </Link>
           </div>
           <div className="hero__stat-row" aria-label="Key highlights">
             {statChips.map((stat) => (
@@ -69,7 +70,7 @@ export default function Hero() {
           <div className="hero__aside-card">
             <h3>What we focus on</h3>
             <p>
-              We specialise in clean, conversion-first experiences backed by AI so your marketing, sales, and operations teams can scale without chaos.
+              We specialise in connected product ecosystems that blend thoughtful UX, robust data pipelines, and automation your operators trust.
             </p>
             <ul className="hero__aside-list">
               {servicesList.map((item) => (

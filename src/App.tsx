@@ -1,19 +1,19 @@
+import { Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
-import Hero from './components/Hero';
-import ServicesShowcase from './components/ServicesShowcase';
-import AboutUsSection from './components/AboutUsSection';
-import ServicesDetailSection from './components/ServicesDetailSection';
-import SolutionsSection from './components/SolutionsSection';
-import IndustriesSection from './components/IndustriesSection';
-import TechStackSection from './components/TechStackSection';
-import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
-import SEO, { StructuredData } from './components/SEO';
+import { StructuredData } from './components/SEO';
+import HomePage from './pages/HomePage';
+import AboutPage from './pages/AboutPage';
+import ServicesPage from './pages/ServicesPage';
+import SolutionsPage from './pages/SolutionsPage';
+import IndustriesPage from './pages/IndustriesPage';
+import WorkPage from './pages/WorkPage';
+import ContactPage from './pages/ContactPage';
+import NotFoundPage from './pages/NotFoundPage';
 
 export default function App() {
   return (
     <>
-      <SEO />
       <StructuredData />
       <a href="#main-content" className="sr-only skip-link">
         Skip to main content
@@ -21,14 +21,16 @@ export default function App() {
       <div className="app-shell">
         <Header />
         <main id="main-content">
-          <Hero />
-          <ServicesShowcase />
-          <AboutUsSection />
-          <ServicesDetailSection />
-          <SolutionsSection />
-          <IndustriesSection />
-          <TechStackSection />
-          <ContactSection />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/services" element={<ServicesPage />} />
+            <Route path="/solutions" element={<SolutionsPage />} />
+            <Route path="/industries" element={<IndustriesPage />} />
+            <Route path="/work" element={<WorkPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
         </main>
         <Footer />
       </div>

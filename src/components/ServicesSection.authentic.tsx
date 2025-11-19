@@ -1,17 +1,18 @@
+import { Link } from 'react-router-dom';
 import MagicBento from './MagicBento';
 
 const SERVICE_CARDS = [
   {
-    label: '3D Visualization',
-    title: '3D Product Configurators',
-    description: 'Interactive configurators for mechanical products with real-time 3D visualization, pricing, and specification export.',
+    label: 'IoT Platforms',
+    title: 'Connected Operations Hubs',
+    description: 'IoT command centres that unify device fleets, telemetry, and operational workflows for manufacturing and field teams.',
     outcomes: [
-      'Custom 3D models and rendering pipeline',
-      'Configuration logic with engineering constraints',
-      'Quote generation and CAD file export',
-      'Mobile-responsive WebGL experiences'
+      'Device onboarding, provisioning, and access controls',
+      'Telemetry dashboards with alerting and incident management',
+      'Data services feeding ERP, CMMS, and analytics',
+      'Governance playbooks for adoption and scale'
     ],
-    ideal: 'Manufacturing, Machinery, Industrial Equipment companies'
+    ideal: 'Manufacturing, Field Service, Industrial IoT scale-ups'
   },
   {
     label: 'Mobile Development',
@@ -57,7 +58,7 @@ export default function ServicesSection() {
       <div className="container section__layout section__layout--services">
         <div className="section__intro">
           <p className="eyebrow">What I Build</p>
-          <h2>Specialized solutions across 3D, IoT, and AI domains.</h2>
+          <h2>Specialized solutions across IoT, mobile, and AI domains.</h2>
           <p>
             I focus on four core service areas where I have proven delivery experience. 
             Each project is custom-built to your specific requirements, not template-based solutions.
@@ -66,7 +67,7 @@ export default function ServicesSection() {
             <span className="section__cta-pill">Project timelines</span>
             <p>
               Most projects range from <strong>4-12 weeks</strong> depending on complexity. 
-              <a href="#contact"> Get in touch</a> to discuss your timeline and requirements.
+              <Link to="/contact"> Get in touch</Link> to discuss your timeline and requirements.
             </p>
           </div>
         </div>

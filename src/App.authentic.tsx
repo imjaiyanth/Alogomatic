@@ -14,7 +14,7 @@ export default function App() {
     <>
       <SEO 
         title="Alogomatic | Full-Stack Developer & AI Automation Specialist"
-        description="Building 3D product configurators, IoT mobile apps, and AI automation workflows. 5+ applications delivered, 50+ AI agents deployed. React • Node.js • Python • n8n • CrewAI"
+        description="Building IoT platforms, mobile apps, and AI automation workflows. 5+ applications delivered, 50+ AI agents deployed. React • Node.js • Python • n8n • CrewAI"
       />
       <StructuredData />
       <a href="#main-content" className="sr-only skip-link">

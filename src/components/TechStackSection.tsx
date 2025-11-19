@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 const categories = [
   {
     title: 'Model & Agent Ops',
@@ -30,7 +32,7 @@ export default function TechStackSection() {
             Curious about compatibility with your current stack? During discovery, we run a technical assessment to map
             integrations, security considerations, and data readiness. From there, we co-design an implementation plan that
             ensures your internal teams can support and evolve the solution. Review highlights of our ecosystem below and
-            connect with us via the <a href="#contact">contact channel</a> for a deeper dive.
+            connect with us via the <Link to="/contact">contact channel</Link> for a deeper dive.
           </p>
         </div>
         <div className="section__content">

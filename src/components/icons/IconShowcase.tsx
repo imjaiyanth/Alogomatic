@@ -1,7 +1,7 @@
 import {
   AnimatedAIBrainIcon,
   AnimatedWebAppIcon,
-  AnimatedCube3DIcon,
+  AnimatedIoTSignalIcon,
   AnimatedChatBotIcon,
   AnimatedAutomationIcon,
   AnimatedIntegrationIcon
@@ -26,10 +26,10 @@ export default function IconShowcase() {
       useCase: 'Web Development, Custom Apps'
     },
     { 
-      component: AnimatedCube3DIcon, 
-      name: '3D Cube', 
-      description: 'Rotating cube with lighting',
-      useCase: '3D Configurators, Visualization'
+      component: AnimatedIoTSignalIcon, 
+      name: 'IoT Signal', 
+      description: 'Pulsing hub with sensor orbit',
+      useCase: 'IoT Platforms, Device Fleets'
     },
     { 
       component: AnimatedChatBotIcon, 

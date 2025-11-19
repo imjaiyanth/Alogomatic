@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import useContactForm from '../hooks/useContactForm';
 
 export default function ContactSection() {
@@ -105,8 +106,8 @@ export default function ContactSection() {
           </button>
           <p className="contact__disclaimer">We respect your privacy and will respond within two business days.</p>
           <p className="contact__assurance">
-            Prefer to learn more first? Visit our <a href="#about">about section</a> for background on the team or explore
-            the <a href="#services">services overview</a> to see how we structure automation engagements from discovery to scale.
+            Prefer to learn more first? Visit our <Link to="/about">about section</Link> for background on the team or explore
+            the <Link to="/services">services overview</Link> to see how we structure automation engagements from discovery to scale.
           </p>
         </form>
       </div>

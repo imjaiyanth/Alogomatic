@@ -1,39 +1,41 @@
+import { Link } from 'react-router-dom';
+
 const DELIVERY_PROGRAMS = [
+  {
+    title: 'IoT Platform Sprints',
+    focus: 'Connected Operations',
+    summary: 'We align hardware, connectivity, and data streams to stand up an IoT control centre that becomes your team’s daily cockpit.',
+    commitments: [
+      'Week 1: fleet discovery, architecture blueprint, experience brief',
+      'Weeks 2-3: data connectors, telemetry pipelines, and interface prototypes',
+      'Week 4: pilot launch with instrumentation and operating playbook'
+    ],
+    cadence: '4-6 week pilots',
+    signal: 'Typical outcome: live command centre with adoption plan'
+  },
   {
     title: 'AI Automation Projects',
     focus: 'Operations / Support',
-    summary: 'We build and deploy AI chatbots and workflow automation systems that handle repetitive tasks and customer inquiries.',
+    summary: 'We deploy AI copilots and workflow automation systems that turn IoT signals into recommendations, escalations, and measurable action.',
     commitments: [
-      'Week 1: requirements analysis and workflow mapping',
-      'Weeks 2-3: AI chatbot and automation development',
-      'Week 4: testing, deployment, and training'
+      'Week 1: process mapping, data readiness, and guardrail design',
+      'Weeks 2-3: automation build, copilot training, and integrations',
+      'Week 4: enablement, rollout support, and performance dashboards'
     ],
     cadence: '4-6 week projects',
     signal: 'Typical outcome: 60% reduction in manual tasks'
   },
   {
-    title: 'Web Application Development',
-    focus: 'Custom Applications',
-    summary: 'Full-stack web applications built with modern frameworks, designed for your specific business processes and workflows.',
+    title: 'Digital Portal Programs',
+    focus: 'Customer & Partner Experience',
+    summary: 'Experience-led portals and web applications that give customers and partners a self-serve window into your connected products.',
     commitments: [
-      'Requirements gathering and technical design',
-      'Frontend and backend development with testing',
-      'Deployment, documentation, and maintenance support'
+      'Discovery workshops and UX strategy aligned to brand systems',
+      'Iterative design, full-stack build, and systems integration',
+      'Launch readiness, QA, and transition to enterprise operations'
     ],
-    cadence: '6-10 week projects',
-    signal: 'Typical outcome: production-ready web application'
-  },
-  {
-    title: '3D Configurator Solutions',
-    focus: 'Manufacturing / Product Visualization',
-    summary: 'Interactive 3D product configurators with real-time rendering, configuration rules, and dynamic pricing integration.',
-    commitments: [
-      '3D modeling and asset optimization',
-      'Configuration engine and business rules setup',
-      'Integration with pricing and ordering systems'
-    ],
-    cadence: '8-12 week projects',
-    signal: 'Typical outcome: interactive product customization'
+    cadence: '6-10 week programs',
+    signal: 'Typical outcome: production-ready portal with adoption toolkit'
   }
 ] as const;
 
@@ -77,7 +79,8 @@ export default function ServicesDetailSection() {
           <strong>Have a specific project in mind?</strong>
           <p>
             We can tailor our approach to fit your unique requirements. Share your project details and we will create a
-            custom proposal. <a href="#contact">Let&rsquo;s discuss your needs.</a>
+            custom proposal.{' '}
+            <Link to="/contact">Let&rsquo;s discuss your needs.</Link>
           </p>
         </div>
       </div>

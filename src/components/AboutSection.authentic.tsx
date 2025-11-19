@@ -4,11 +4,11 @@ export default function AboutSection() {
       <div className="container section__layout">
         <div className="section__intro">
           <p className="eyebrow">About</p>
-          <h2>Full-stack developer building at the intersection of 3D, IoT, and AI.</h2>
+          <h2>Full-stack developer building connected IoT experiences with AI.</h2>
           <p>
             I'm a developer who bridges hardware and software, creating applications that bring 
             physical products to life through code. With expertise spanning web development, 
-            mobile apps, 3D visualization, and AI automation, I help businesses modernize 
+            mobile apps, IoT platforms, and AI automation, I help businesses modernize 
             their digital presence and streamline operations.
           </p>
         </div>
@@ -27,7 +27,7 @@ export default function AboutSection() {
             <div className="stat-card">
               <span className="stat-card__number">3</span>
               <span className="stat-card__label">Specialized Domains</span>
-              <p>3D configurators, IoT mobile apps, and AI automation systems</p>
+              <p>IoT platforms, mobile apps, and AI automation systems</p>
             </div>
           </div>
           
@@ -35,17 +35,16 @@ export default function AboutSection() {
             <h3>Core Expertise</h3>
             <div className="expertise-grid">
               <div className="expertise-card">
-                <h4>🎨 3D Product Configurators</h4>
+                <h4>📡 IoT Platform Engineering</h4>
                 <p>
-                  Interactive 3D visualizers for mechanical and manufacturing companies. 
-                  Customers configure products in real-time with instant visual feedback, 
-                  pricing calculations, and export-ready specifications.
+                  Command centres and telemetry dashboards that unite devices, data, and operational teams. 
+                  Built to scale with secure access, rich analytics, and seamless integrations.
                 </p>
                 <ul>
-                  <li>Real-time 3D rendering (Three.js, WebGL)</li>
-                  <li>Product customization logic</li>
-                  <li>Engineering constraint validation</li>
-                  <li>Quote generation & CAD export</li>
+                  <li>Device onboarding, firmware orchestration, role-based access</li>
+                  <li>Real-time telemetry streams and alerting</li>
+                  <li>Integrations with ERP, CMMS, and support tooling</li>
+                  <li>Analytics and reporting tailored to stakeholders</li>
                 </ul>
               </div>
               
@@ -101,7 +100,7 @@ export default function AboutSection() {
             <p>
               I work best with businesses that need a technical partner who can understand 
               both the engineering challenges and business objectives. Whether you're a 
-              manufacturing company needing a product configurator, an IoT startup building 
+              manufacturing company needing an IoT control centre, an IoT startup shipping 
               your first mobile app, or a business looking to automate workflows with AI—
               I bring hands-on experience and a pragmatic approach.
             </p>

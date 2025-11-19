@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 export default function AboutUsSection() {
   return (
     <section className="section section--alt" id="about">
@@ -20,10 +22,10 @@ export default function AboutUsSection() {
           </div>
           <div className="about-story__content">
             <p>
-              Meghamsys was founded on a simple belief: AI and automation should augment human capability, 
-              not replace it. We've spent years refining our craft in building intelligent systems that solve 
-              real business problems—from AI agents that handle complex workflows to 3D configurators that 
-              transform how products are sold online.
+              Meghamsys was founded on a simple belief: technology should amplify the people closest to the work. 
+              We’ve spent years refining our craft in building intelligent systems that solve
+              real business problems—from AI agents that handle complex workflows to IoT ecosystems that 
+              keep products, data, and service teams in sync.
             </p>
             <p>
               What started as a passion for solving hard technical challenges has grown into a full-service 
@@ -89,9 +91,9 @@ export default function AboutUsSection() {
             </div>
 
             <div className="expertise-item">
-              <span className="expertise-item__icon">🎨</span>
-              <h4>3D & Visualization</h4>
-              <p>Three.js, WebGL, interactive configurators, real-time rendering</p>
+              <span className="expertise-item__icon">📡</span>
+              <h4>Connected Devices</h4>
+              <p>IoT platform architecture, telemetry pipelines, device orchestration</p>
             </div>
 
             <div className="expertise-item">
@@ -126,9 +128,9 @@ export default function AboutUsSection() {
         <div className="about-cta">
           <h3>Ready to work with us?</h3>
           <p>Let's discuss how we can help transform your business with AI and automation.</p>
-          <a href="#contact" className="button">
+          <Link to="/contact" className="button">
             Start a Conversation
-          </a>
+          </Link>
         </div>
       </div>
     </section>

@@ -96,8 +96,8 @@ export function WebAppIcon({ size = 32, className = '' }: IconProps) {
   );
 }
 
-// 3D Cube Icon - for 3D Product Configurators
-export function Cube3DIcon({ size = 32, className = '' }: IconProps) {
+// IoT Signal Icon - for connected device platforms
+export function IoTSignalIcon({ size = 32, className = '' }: IconProps) {
   return (
     <svg
       width={size}
@@ -107,39 +107,28 @@ export function Cube3DIcon({ size = 32, className = '' }: IconProps) {
       xmlns="http://www.w3.org/2000/svg"
       className={className}
     >
-      {/* 3D Cube structure */}
-      {/* Top face */}
-      <path
-        d="M16 6L26 11L16 16L6 11L16 6Z"
-        fill="currentColor"
-        opacity="0.3"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinejoin="round"
-      />
-      
-      {/* Left face */}
-      <path
-        d="M6 11V21L16 26V16L6 11Z"
-        fill="currentColor"
-        opacity="0.15"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinejoin="round"
-      />
-      
-      {/* Right face */}
-      <path
-        d="M16 16V26L26 21V11L16 16Z"
-        fill="currentColor"
-        opacity="0.2"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinejoin="round"
-      />
-      
-      {/* Edge highlights for depth */}
-      <line x1="16" y1="6" x2="16" y2="16" stroke="currentColor" strokeWidth="1.5" opacity="0.4" />
+      {/* Signal rings */}
+      <circle cx="16" cy="16" r="11.5" stroke="currentColor" strokeWidth="1.2" strokeOpacity="0.4" />
+      <circle cx="16" cy="16" r="8" stroke="currentColor" strokeWidth="1.2" strokeOpacity="0.3" />
+
+      {/* Orbiting sensors */}
+      <circle cx="16" cy="6" r="1.8" fill="currentColor" opacity="0.7" />
+      <circle cx="26" cy="16" r="1.8" fill="currentColor" opacity="0.7" />
+      <circle cx="16" cy="26" r="1.8" fill="currentColor" opacity="0.7" />
+      <circle cx="6" cy="16" r="1.8" fill="currentColor" opacity="0.7" />
+
+      {/* Hub connectors */}
+      <g stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" opacity="0.5">
+        <line x1="16" y1="9" x2="16" y2="13" />
+        <line x1="16" y1="19" x2="16" y2="23" />
+        <line x1="19" y1="16" x2="23" y2="16" />
+        <line x1="9" y1="16" x2="13" y2="16" />
+      </g>
+
+      {/* Central hub */}
+      <circle cx="16" cy="16" r="4" fill="currentColor" opacity="0.2" />
+      <circle cx="16" cy="16" r="2.5" fill="currentColor" />
+      <circle cx="16" cy="16" r="1.2" fill="var(--bg-main, #050510)" />
     </svg>
   );
 }

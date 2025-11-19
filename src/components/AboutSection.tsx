@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 export default function AboutSection() {
   return (
     <section className="section" id="about">
@@ -22,10 +24,10 @@ export default function AboutSection() {
             for launching tangible business outcomes fast.
           </p>
           <p>
-            As a full-stack <a href="#services">AI automation services</a> partner, Meghamsys guides clients through data
+            As a full-stack <Link to="/services">AI automation services</Link> partner, Meghamsys guides clients through data
             readiness, platform modernization, and organizational enablement. We ship responsibly from day one with the
-            governance, observability, and change management that leadership expects. Explore our <a href="#work">case studies</a>
-            for proof of impact or <a href="#contact">connect with our team</a> to plan your next initiative.
+            governance, observability, and change management that leadership expects. Explore our <Link to="/work">case studies</Link>
+            for proof of impact or <Link to="/contact">connect with our team</Link> to plan your next initiative.
           </p>
           <ul className="about-highlights">
             <li><strong>50+ AI copilots</strong> launched in production for operations, finance, and revenue teams.</li>

@@ -149,8 +149,8 @@ export function AnimatedWebAppIcon({ size = 32, className = '' }: IconProps) {
   );
 }
 
-// 3D Cube with rotation animation
-export function AnimatedCube3DIcon({ size = 32, className = '' }: IconProps) {
+// IoT signal with pulsing network animation
+export function AnimatedIoTSignalIcon({ size = 32, className = '' }: IconProps) {
   return (
     <svg
       width={size}
@@ -162,56 +162,59 @@ export function AnimatedCube3DIcon({ size = 32, className = '' }: IconProps) {
     >
       <style>
         {`
-          @keyframes rotate-cube {
-            0% { opacity: 0.2; }
-            25% { opacity: 0.4; }
-            50% { opacity: 0.3; }
-            75% { opacity: 0.25; }
-            100% { opacity: 0.2; }
+          @keyframes pulse-wave {
+            0%, 100% { stroke-opacity: 0.15; stroke-width: 1; }
+            50% { stroke-opacity: 0.55; stroke-width: 1.6; }
           }
-          @keyframes glow-edge {
-            0%, 100% { opacity: 0.3; stroke-width: 1.5; }
-            50% { opacity: 0.7; stroke-width: 2; }
+          @keyframes orbit {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
           }
-          .cube-face-top { animation: rotate-cube 4s ease-in-out infinite; animation-delay: 0s; }
-          .cube-face-left { animation: rotate-cube 4s ease-in-out infinite; animation-delay: 1.3s; }
-          .cube-face-right { animation: rotate-cube 4s ease-in-out infinite; animation-delay: 2.6s; }
-          .cube-edge { animation: glow-edge 3s ease-in-out infinite; }
+          @keyframes hub-pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.08); opacity: 0.85; }
+          }
+          @keyframes node-ping {
+            0%, 100% { transform: scale(1); opacity: 0.4; }
+            50% { transform: scale(1.2); opacity: 1; }
+          }
+          .signal-ring { animation: pulse-wave 3.5s ease-in-out infinite; transform-origin: 16px 16px; }
+          .signal-ring--inner { animation-delay: 0.8s; }
+          .iot-orbit { animation: orbit 6s linear infinite; transform-origin: 16px 16px; }
+          .iot-node { animation: node-ping 2.4s ease-in-out infinite; transform-origin: center; }
+          .iot-node:nth-child(2) { animation-delay: 0.4s; }
+          .iot-node:nth-child(3) { animation-delay: 0.8s; }
+          .iot-node:nth-child(4) { animation-delay: 1.2s; }
+          .iot-hub { animation: hub-pulse 2.6s ease-in-out infinite; transform-origin: 16px 16px; }
         `}
       </style>
-      
-      {/* Top face */}
-      <path
-        className="cube-face-top"
-        d="M16 6L26 11L16 16L6 11L16 6Z"
-        fill="currentColor"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinejoin="round"
-      />
-      
-      {/* Left face */}
-      <path
-        className="cube-face-left"
-        d="M6 11V21L16 26V16L6 11Z"
-        fill="currentColor"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinejoin="round"
-      />
-      
-      {/* Right face */}
-      <path
-        className="cube-face-right"
-        d="M16 16V26L26 21V11L16 16Z"
-        fill="currentColor"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinejoin="round"
-      />
-      
-      {/* Glowing central edge */}
-      <line className="cube-edge" x1="16" y1="6" x2="16" y2="16" stroke="currentColor" />
+
+      {/* Outer signal rings */}
+      <circle className="signal-ring" cx="16" cy="16" r="11.5" stroke="currentColor" fill="none" />
+      <circle className="signal-ring signal-ring--inner" cx="16" cy="16" r="7.5" stroke="currentColor" fill="none" />
+
+      {/* Orbiting sensor nodes */}
+      <g className="iot-orbit">
+        <circle className="iot-node" cx="16" cy="4.5" r="1.6" fill="currentColor" />
+        <circle className="iot-node" cx="26.5" cy="14" r="1.8" fill="currentColor" />
+        <circle className="iot-node" cx="16" cy="27.5" r="1.6" fill="currentColor" />
+        <circle className="iot-node" cx="5.5" cy="14" r="1.8" fill="currentColor" />
+      </g>
+
+      {/* Hub connections */}
+      <g stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" opacity="0.45">
+        <line x1="16" y1="8.5" x2="16" y2="12" />
+        <line x1="21.5" y1="16" x2="18.6" y2="16" />
+        <line x1="10.5" y1="16" x2="13.4" y2="16" />
+        <line x1="16" y1="20" x2="16" y2="23.5" />
+      </g>
+
+      {/* Central hub */}
+      <g className="iot-hub">
+        <circle cx="16" cy="16" r="4" fill="currentColor" opacity="0.22" />
+        <circle cx="16" cy="16" r="2.6" fill="currentColor" />
+        <circle cx="16" cy="16" r="1.3" fill="var(--bg-main, #050510)" />
+      </g>
     </svg>
   );
 }

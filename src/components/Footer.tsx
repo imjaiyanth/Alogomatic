@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 export default function Footer() {
   return (
     <footer className="footer">
@@ -7,12 +9,11 @@ export default function Footer() {
           <p>Designing intelligent products and AI systems that drive measurable, human outcomes.</p>
         </div>
         <div className="footer__links">
-          <a href="#services">Services</a>
-          <a href="#approach">Approach</a>
-          <a href="#work">Work</a>
-          <a href="#tech">Tech</a>
-          <a href="#about">About</a>
-          <a href="#contact">Contact</a>
+          <Link to="/services">Services</Link>
+          <Link to="/solutions">Solutions</Link>
+          <Link to="/industries">Industries</Link>
+          <Link to="/about">About</Link>
+          <Link to="/contact">Contact</Link>
         </div>
         <div className="footer__smallprint">
           <span>© {new Date().getFullYear()} Meghamsys. All rights reserved.</span>

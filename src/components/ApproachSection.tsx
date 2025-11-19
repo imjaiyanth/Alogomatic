@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const steps = [
   {
@@ -9,7 +10,7 @@ const steps = [
   {
     number: '2',
     title: 'Create & Deliver',
-    description: 'We design a solution just for you, choosing only the services that make sense for your goals. Whether it\'s 3D configurators, IoT apps, or AI workflows, we deliver exactly what your business needs to grow.'
+    description: 'We design a solution just for you, choosing only the services that make sense for your goals. Whether it\'s IoT platforms, service portals, or AI workflows, we deliver exactly what your business needs to grow.'
   },
   {
     number: '3',
@@ -59,12 +60,12 @@ export default function ApproachSection() {
           <p className="process-section__cta-text">
             You focus on doing what you love, running your business — I'll handle the tech.
           </p>
-          <a href="#contact" className="process-section__button">
+          <Link to="/contact" className="process-section__button">
             Start Your Project
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
               <path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
-          </a>
+          </Link>
         </div>
       </div>
     </section>

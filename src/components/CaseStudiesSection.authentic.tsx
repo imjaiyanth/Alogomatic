@@ -1,17 +1,19 @@
+import { Link } from 'react-router-dom';
+
 export default function CaseStudiesSection() {
   const caseStudies = [
     {
-      title: '3D Mechanical Product Configurator',
-      category: '3D Visualization',
-      challenge: 'Manufacturing company needed a way for customers to configure complex mechanical products online with real-time pricing and 3D visualization.',
-      solution: 'Built an interactive WebGL-based configurator where users select components, see instant 3D updates, get dynamic pricing, and export specifications.',
-      tech: ['Three.js', 'React', 'Node.js', 'PostgreSQL'],
+      title: 'Industrial IoT Operations Command Centre',
+      category: 'IoT Platform',
+      challenge: 'Global manufacturer needed a single pane of glass for machine telemetry, maintenance workflows, and customer commitments across plants.',
+      solution: 'Designed and delivered an IoT command centre with live health scoring, alert routing, and integrated work orders that plug into existing ERP systems.',
+      tech: ['React', 'TypeScript', 'Node.js', 'Azure IoT Hub', 'PostgreSQL'],
       impact: [
-        'Reduced quote generation time from 2 days to 5 minutes',
-        'Increased customer engagement by 340%',
-        'Eliminated 80% of configuration errors'
+        'Reduced unplanned downtime by 28%',
+        'Provided operations leaders with real-time SLA reporting',
+        'Scaled to 4 regions within the first quarter'
       ],
-      image: '/placeholder-3d-config.jpg'
+      image: '/placeholder-iot-platform.jpg'
     },
     {
       title: 'IoT Device Mobile App (iOS & Android)',
@@ -53,17 +55,17 @@ export default function CaseStudiesSection() {
       image: '/placeholder-saas.jpg'
     },
     {
-      title: 'Custom E-commerce with 3D Product Viewer',
-      category: 'Full-Stack + 3D',
-      challenge: 'Furniture company wanted customers to visualize products in 3D with AR capabilities before purchase.',
-      solution: 'Built e-commerce platform with integrated 3D viewer, AR preview, and customization options. Deployed to iOS/Android via WebXR.',
-      tech: ['React', 'Three.js', 'Shopify API', 'WebXR', 'Node.js'],
+      title: 'Partner Service Portal with Device Insights',
+      category: 'Digital Experience',
+      challenge: 'Hardware company required a secure partner portal that exposed device health, warranty status, and support tooling.',
+      solution: 'Built a responsive portal with SSO, contextual dashboards, and integrated ticketing so partners could self-serve device issues without escalations.',
+      tech: ['Next.js', 'GraphQL', 'Node.js', 'AWS DynamoDB', 'Auth0'],
       impact: [
-        'Increased conversion rate by 65%',
-        'Reduced returns by 40%',
-        'Average time on site increased 5x'
+        'Cut partner support tickets by 52%',
+        'Improved warranty approval times from days to hours',
+        'Delivered brand-consistent experience across 12 markets'
       ],
-      image: '/placeholder-ecommerce-3d.jpg'
+      image: '/placeholder-partner-portal.jpg'
     }
   ];
 
@@ -72,7 +74,7 @@ export default function CaseStudiesSection() {
       <div className="container">
         <div className="section__intro">
           <p className="eyebrow">Portfolio</p>
-          <h2>Recent projects across 3D, IoT, and AI domains.</h2>
+          <h2>Recent projects across IoT, mobile, AI, and SaaS.</h2>
           <p>
             Here are 5 of my recent projects showcasing different technical capabilities. 
             Each project includes the challenge, solution approach, tech stack, and measurable outcomes.
@@ -125,9 +127,9 @@ export default function CaseStudiesSection() {
             These are representative examples. Actual client names and specific details 
             are withheld for confidentiality.
           </p>
-          <a href="#contact" className="button">
+          <Link to="/contact" className="button">
             Discuss your project
-          </a>
+          </Link>
         </div>
       </div>
     </section>

@@ -1,13 +1,15 @@
+import { Link } from 'react-router-dom';
+
 const INDUSTRY_FOCUS = [
   {
     title: 'Manufacturing',
     headline: 'Streamline production and customer engagement with smart technology.',
     plays: [
-      '3D product configurators for custom manufacturing quotes',
-      'IoT dashboards for real-time equipment monitoring',
-      'Workflow automation for order processing and documentation'
+      'IoT asset monitoring dashboards for production lines',
+      'Predictive maintenance workflows powered by AI insights',
+      'Digital order orchestration aligned with ERP and MES'
     ],
-    proof: 'Manufacturing clients see faster quote generation and fewer configuration errors.'
+    proof: 'Manufacturing clients gain always-on visibility and reduce unplanned downtime.'
   },
   {
     title: 'Healthcare',
@@ -20,14 +22,14 @@ const INDUSTRY_FOCUS = [
     proof: 'Healthcare providers typically reduce administrative workload by 60%.'
   },
   {
-    title: 'E-commerce',
-    headline: 'Enhance online shopping experiences with interactive technology.',
+    title: 'Logistics & Retail',
+    headline: 'Keep fulfilment, inventory, and customer teams aligned in real time.',
     plays: [
-      '3D product visualization for online shoppers',
-      'AI chatbots for customer support and product recommendations',
-      'Automated order processing and inventory management'
+      'Telemetry-enabled inventory visibility across warehouses and stores',
+      'AI assistants that guide support teams with up-to-date order context',
+      'Automation that syncs replenishment, routing, and customer notifications'
     ],
-    proof: 'E-commerce businesses see increased engagement and reduced support costs.'
+    proof: 'Retail operations report higher SLA adherence and faster issue resolution.'
   },
   {
     title: 'Professional Services',
@@ -71,7 +73,8 @@ export default function IndustriesSection() {
 
         <div className="industries-note">
           <p>
-            Work in a different industry? Our technology solutions can be adapted to fit various business needs. <a href="#contact">Let&rsquo;s discuss how we can help.</a>
+            Work in a different industry? Our technology solutions can be adapted to fit various business needs.{' '}
+            <Link to="/contact">Let&rsquo;s discuss how we can help.</Link>
           </p>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import './PillNav.css';
 
@@ -236,6 +236,39 @@ const PillNav: React.FC<PillNavProps> = ({
     href.startsWith('mailto:') ||
     href.startsWith('tel:');
 
+  const isInPageAnchor = (href: string) => href.startsWith('#');
+  const isInternalRoute = (href: string) => href.startsWith('/') && !href.startsWith('//');
+
+  const isItemActive = useMemo(() => {
+    if (!activeHref) {
+      return () => false;
+    }
+
+    return (href: string) => {
+      if (!activeHref) return false;
+      if (href === '/') {
+        return activeHref === '/';
+      }
+
+      return activeHref === href || (activeHref.startsWith(href) && href !== '/');
+    };
+  }, [activeHref]);
+
+  const handleLinkInteraction = (href: string, event?: React.MouseEvent<HTMLAnchorElement>) => {
+    if (isExternalLink(href) || isInPageAnchor(href)) {
+      onItemActivate?.(href);
+      return;
+    }
+
+    if (isInternalRoute(href)) {
+      event?.preventDefault();
+      onItemActivate?.(href);
+      return;
+    }
+
+    onItemActivate?.(href);
+  };
+
   const cssVars = {
     ['--base']: baseColor,
     ['--pill-bg']: pillColor,
@@ -270,11 +303,11 @@ const PillNav: React.FC<PillNavProps> = ({
                 <a
                   role="menuitem"
                   href={item.href}
-                  className={`pill${activeHref === item.href ? ' is-active' : ''}`}
+                  className={`pill${isItemActive(item.href) ? ' is-active' : ''}`}
                   aria-label={item.ariaLabel || item.label}
                   onMouseEnter={() => handleEnter(i)}
                   onMouseLeave={() => handleLeave(i)}
-                  onClick={() => onItemActivate?.(item.href)}
+                  onClick={event => handleLinkInteraction(item.href, event)}
                 >
                   <span
                     className="hover-circle"
@@ -312,12 +345,12 @@ const PillNav: React.FC<PillNavProps> = ({
             <li key={item.href}>
               <a
                 href={item.href}
-                className={`mobile-menu-link${activeHref === item.href ? ' is-active' : ''}`}
-                onClick={() => {
+                className={`mobile-menu-link${isItemActive(item.href) ? ' is-active' : ''}`}
+                onClick={event => {
                   if (isMobileMenuOpen) {
                     toggleMobileMenu();
                   }
-                  onItemActivate?.(item.href);
+                  handleLinkInteraction(item.href, event);
                 }}
               >
                 {item.label}

@@ -1,26 +1,28 @@
-import { AnimatedAIBrainIcon, AnimatedWebAppIcon, AnimatedCube3DIcon } from './icons/AnimatedServiceIcons';
+import { Link } from 'react-router-dom';
+import CardSwapShowcase from './CardSwapShowcase';
+import { AnimatedAIBrainIcon, AnimatedWebAppIcon, AnimatedIoTSignalIcon } from './icons/AnimatedServiceIcons';
 
 const services = [
   {
-    icon: AnimatedAIBrainIcon,
-    gradient: 'linear-gradient(135deg, #52f0ff 0%, #1ec8ff 100%)',
-    title: 'AI Automation & Chatbots',
-    description: 'Intelligent AI assistants that handle customer inquiries, automate workflows, and streamline operations across your systems.',
-    highlights: ['AI chatbots for customer support', 'Workflow automation with n8n & Make', 'System integrations & data processing']
+    icon: AnimatedIoTSignalIcon,
+    gradient: 'linear-gradient(135deg, #52f0ff 0%, #2dd4bf 100%)',
+    title: 'IoT Platform Engineering',
+    description: 'Connect devices, data, and teams with resilient IoT control centres crafted for operations leaders.',
+    highlights: ['Unified device onboarding & fleet management', 'Real-time telemetry dashboards and alerting', 'Edge-to-cloud data pipelines with governance']
   },
   {
     icon: AnimatedWebAppIcon,
     gradient: 'linear-gradient(135deg, #52f0ff 0%, #3b82f6 100%)',
-    title: 'Web Applications',
-    description: 'Modern, responsive web applications built with cutting-edge frameworks for optimal performance and user experience.',
-    highlights: ['Custom web applications & dashboards', 'React, Next.js & TypeScript', 'Cloud deployment & scalability']
+    title: 'Digital Operations Portals',
+    description: 'Experience-led portals and service workspaces that keep customers, partners, and internal teams aligned.',
+    highlights: ['Self-serve customer and partner portals', 'Workflow-driven escalation management', 'Design systems matched to enterprise brand']
   },
   {
-    icon: AnimatedCube3DIcon,
-    gradient: 'linear-gradient(135deg, #52f0ff 0%, #8b5cf6 100%)',
-    title: '3D Product Configurators',
-    description: 'Interactive 3D visualizations that let customers configure and explore products in real-time with dynamic pricing.',
-    highlights: ['Real-time 3D product visualization', 'Three.js & WebGL technology', 'Configuration rules & pricing engines']
+    icon: AnimatedAIBrainIcon,
+    gradient: 'linear-gradient(135deg, #52f0ff 0%, #6366f1 100%)',
+    title: 'AI Automation & Insights',
+    description: 'Operational AI copilots that translate IoT signals into recommendations, automations, and measurable action.',
+    highlights: ['Predictive maintenance and anomaly detection', 'Copilot-enabled triage for support & field teams', 'Automations orchestrated with your existing stack']
   }
 ];
 
@@ -30,11 +32,13 @@ export default function ServicesShowcase() {
       <div className="container">
         <div className="services-showcase__header">
           <p className="eyebrow">Services</p>
-          <h2 className="services-showcase__title metallic-heading">Technology solutions that transform your operations.</h2>
+          <h2 className="services-showcase__title metallic-heading">Platforms and services for connected enterprises.</h2>
           <p className="services-showcase__subtitle">
-            We deliver AI automation, web applications, chatbots, and 3D configurators tailored to your industry needs.
+            We deliver IoT platforms, digital operations portals, and AI copilots that feel as considered as the best B2B SaaS experiences.
           </p>
         </div>
+
+        <CardSwapShowcase />
 
         <div className="services-grid">
           {services.map((service) => {
@@ -51,9 +55,9 @@ export default function ServicesShowcase() {
                   <li key={highlight}>{highlight}</li>
                 ))}
               </ul>
-              <a className="service-card__cta" href="#contact">
+              <Link className="service-card__cta" to="/contact">
                 Learn more
-              </a>
+              </Link>
             </article>
             );
           })}
@@ -64,9 +68,9 @@ export default function ServicesShowcase() {
             <h3>Need something specific?</h3>
             <p>Share your goals and we’ll tailor a roadmap—no jargon, just clarity on what to build next.</p>
           </div>
-          <a className="button" href="#contact">
+          <Link className="button" to="/contact">
             Let’s talk
-          </a>
+          </Link>
         </div>
       </div>
     </section>
