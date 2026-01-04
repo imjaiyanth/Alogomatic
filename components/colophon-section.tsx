@@ -85,9 +85,9 @@ export function ColophonSection() {
         <div className="col-span-1">
           <h4 className="font-mono text-[9px] uppercase tracking-[0.3em] text-muted-foreground mb-4">Expertise</h4>
           <ul className="space-y-2">
-            <li className="font-mono text-xs text-foreground/80 text-pretty">AI & Workflows</li>
-            <li className="font-mono text-xs text-foreground/80 text-pretty">IoT Platforms</li>
-            <li className="font-mono text-xs text-foreground/80 text-pretty">Cloud Infra</li>
+            <li className="font-mono text-xs text-foreground/80 text-pretty">AI Agents & Workflows</li>
+            <li className="font-mono text-xs text-foreground/80 text-pretty">Cassandra (RAG)</li>
+            <li className="font-mono text-xs text-foreground/80 text-pretty">Mechintosh Automations</li>
           </ul>
         </div>
 
@@ -95,9 +95,9 @@ export function ColophonSection() {
         <div className="col-span-1">
           <h4 className="font-mono text-[9px] uppercase tracking-[0.3em] text-muted-foreground mb-4">Dev</h4>
           <ul className="space-y-2">
-            <li className="font-mono text-xs text-foreground/80 text-pretty">Mobile Apps</li>
-            <li className="font-mono text-xs text-foreground/80 text-pretty">Full-Stack</li>
-            <li className="font-mono text-xs text-foreground/80 text-pretty">Engineering</li>
+            <li className="font-mono text-xs text-foreground/80 text-pretty">Web Applications</li>
+            <li className="font-mono text-xs text-foreground/80 text-pretty">Data Analysis</li>
+            <li className="font-mono text-xs text-foreground/80 text-pretty">Project Workflows</li>
           </ul>
         </div>
 

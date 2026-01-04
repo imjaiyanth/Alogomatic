@@ -9,39 +9,39 @@ gsap.registerPlugin(ScrollTrigger)
 
 const experiments = [
   {
-    title: "EcoLink IoT",
-    medium: "IoT Platform",
-    description: "Enterprise-grade sensor mesh network for industrial environmental monitoring.",
+    title: "Cassandra",
+    medium: "Document Intelligence (RAG)",
+    description: "Dedicated RAG model for intelligent document analysis, retrieval, and structured answers.",
     span: "col-span-2 row-span-2",
   },
   {
-    title: "NeuralFlow",
-    medium: "AI Workflows",
-    description: "Automated document processing engine powered by custom LLM agents.",
+    title: "Mechintosh",
+    medium: "Manufacturing Automation",
+    description: "Custom automations for manufacturing workflows—repeatable processes and system actions.",
     span: "col-span-1 row-span-1",
   },
   {
-    title: "SwiftPort",
-    medium: "Mobile Apps",
-    description: "Cross-platform logistics tracking system with real-time sync capabilities.",
+    title: "Healthcare Analytics Pipeline",
+    medium: "Data Analysis",
+    description: "Healthcare data processing and reporting pipelines designed for reliability and traceability.",
     span: "col-span-1 row-span-2",
   },
   {
-    title: "OmniGrid",
-    medium: "Full-Stack Web",
-    description: "Scalable SaaS dashboard for multi-tenant data visualization and management.",
+    title: "Operations Web Console",
+    medium: "Web Application",
+    description: "Dashboards and internal tools that surface real-time signals and actionable workflows.",
     span: "col-span-1 row-span-1",
   },
   {
-    title: "BridgeCore",
-    medium: "System Integration",
-    description: "Middleware architecture for legacy ERP and modern cloud API synchronization.",
+    title: "Workflow Agent System",
+    medium: "AI Agents",
+    description: "Agents that automate repetitive work with structured outputs and integration-ready actions.",
     span: "col-span-2 row-span-1",
   },
   {
-    title: "CloudSync",
-    medium: "Engineering",
-    description: "High-performance data migration utility for hybrid cloud infrastructures.",
+    title: "PLM / ERP Integration Layer",
+    medium: "System Integration",
+    description: "APIs and pipelines that synchronize BOMs, releases, and operational data across systems.",
     span: "col-span-1 row-span-1",
   },
 ]
@@ -99,10 +99,10 @@ export function WorkSection() {
       <div ref={headerRef} className="mb-16 flex items-end justify-between">
         <div>
           <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">02 / Portfolio</span>
-          <h2 className="mt-4 font-[var(--font-bebas)] text-5xl md:text-7xl tracking-tight">SELECTED PROJECTS</h2>
+          <h2 className="mt-4 font-[var(--font-bebas)] text-5xl md:text-7xl tracking-tight">SELECTED WORK</h2>
         </div>
         <p className="hidden md:block max-w-xs font-mono text-xs text-muted-foreground text-right leading-relaxed">
-          Technical implementations across IoT, AI automation, and enterprise systems.
+          Delivery across document intelligence, agent workflows, and production-grade systems.
         </p>
       </div>
 

@@ -20,36 +20,36 @@ export function PrinciplesSection() {
         { text: " FIRST", highlight: false },
       ],
       description:
-        "Code is the foundation. We build robust architectures that prioritize stability and long-term maintainability.",
+        "We ship production-ready systems with clean architecture, predictable releases, and long-term maintainability.",
       align: "left",
     },
     {
       number: "02",
       titleParts: [
-        { text: "INTEGRATED", highlight: true },
-        { text: " ECOSYSTEMS", highlight: false },
+        { text: "TRANSPARENT", highlight: true },
+        { text: " DELIVERY", highlight: false },
       ],
       description:
-        "No system exists in a vacuum. We design interconnected solutions where every component amplifies the next.",
+        "Clear scope, measurable milestones, and frequent demos. You always know what’s shipped, what’s next, and why.",
       align: "right",
     },
     {
       number: "03",
       titleParts: [
-        { text: "RADICAL ", highlight: false },
-        { text: "EFFICIENCY", highlight: true },
+        { text: "QUALITY ", highlight: false },
+        { text: "GUARANTEE", highlight: true },
       ],
       description:
-        "Optimizing compute and workflow. We eliminate latency in systems and friction in digital experiences.",
+        "If a delivered milestone doesn’t meet the agreed acceptance criteria, we fix it fast—or we refund that milestone.",
       align: "left",
     },
     {
       number: "04",
       titleParts: [
-        { text: "FUTURE ", highlight: false },
-        { text: "PROOFING", highlight: true },
+        { text: "SECURE ", highlight: false },
+        { text: "BY DESIGN", highlight: true },
       ],
-      description: "Anticipating scale and evolution. We build with the next decade of technological shifts in mind.",
+      description: "Privacy-first engineering with auditability, least-privilege access, and reliability you can operate.",
       align: "right",
     },
   ]

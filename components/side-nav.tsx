@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { cn } from "@/lib/utils"
+import { Logo } from "@/components/logo"
 
 const navItems = [
   { id: "hero", label: "Index" },
@@ -42,7 +43,11 @@ export function SideNav() {
   }
 
   return (
-    <nav className="fixed left-0 top-0 z-50 h-screen w-16 md:w-20 hidden md:flex flex-col justify-center border-r border-border/30 bg-background/80 backdrop-blur-sm">
+    <nav className="fixed left-0 top-0 z-50 h-screen w-16 md:w-20 hidden md:flex flex-col justify-between border-r border-border/30 bg-background/80 backdrop-blur-sm py-8">
+      <div className="flex justify-center">
+        <Logo className="w-8 h-8 text-accent" />
+      </div>
+      
       <div className="flex flex-col gap-6 px-4">
         {navItems.map(({ id, label }) => (
           <button key={id} onClick={() => scrollToSection(id)} className="group relative flex items-center gap-3">

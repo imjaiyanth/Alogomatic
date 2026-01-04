@@ -11,26 +11,26 @@ const industries = [
   {
     id: "01",
     name: "HEALTHCARE",
-    description: "Digital health platforms, telemedicine, and AI diagnostics.",
-    details: ["HIPAA Compliance", "Data Interoperability", "Real-time Monitoring"],
+    description: "Clinical and operational software, secure data workflows, and automation for care teams.",
+    details: ["HIPAA-Aligned Workflows", "Interoperability", "Auditability"],
   },
   {
     id: "02",
-    name: "FINTECH",
-    description: "Secure payment gateways, blockchain, and automated trading.",
-    details: ["Transaction Security", "Legacy Modernization", "Fraud Detection"],
+    name: "MEDICAL DEVICES",
+    description: "Engineering and data systems that support regulated product development and validation.",
+    details: ["Traceability", "Data Integrity", "Process Automation"],
   },
   {
     id: "03",
     name: "MANUFACTURING",
-    description: "Industry 4.0, predictive maintenance, and IoT supply chains.",
-    details: ["IIoT Integration", "Inventory Management", "Process Automation"],
+    description: "Automation and agent systems for engineering-led manufacturing teams.",
+    details: ["Workflow Automations", "System Integrations", "Operational Dashboards"],
   },
   {
     id: "04",
-    name: "LOGISTICS",
-    description: "Fleet management, route optimization, and real-time tracking.",
-    details: ["Supply Chain Visibility", "Asset Management", "Route Planning"],
+    name: "INDUSTRIAL EQUIPMENT",
+    description: "3D configuration and product logic for complex, option-heavy engineered products.",
+    details: ["3D Configurators", "Rules & Constraints", "Quote-to-Engineering"],
   },
 ]
 

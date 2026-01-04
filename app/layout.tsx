@@ -17,10 +17,42 @@ const ibmPlexMono = IBM_Plex_Mono({
 const bebasNeue = Bebas_Neue({ weight: "400", subsets: ["latin"], variable: "--font-bebas" })
 
 export const metadata: Metadata = {
-  title: "SIGNAL — Experimental Creative Studio",
+  metadataBase: new URL("https://www.meghamsys.com"),
+  title: "Meghamsys — Engineering for Manufacturing & Healthcare",
   description:
-    "Interface studies in controlled environments. We design systems that behave, not just screens that display.",
+    "We build AI agents and automation systems for manufacturing and healthcare—Cassandra (RAG document intelligence), Mechintosh (manufacturing automations), healthcare data analysis, and project management workflows.",
   generator: "v0.app",
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  openGraph: {
+    type: "website",
+    url: "/",
+    siteName: "Meghamsys",
+    title: "Meghamsys — Engineering for Manufacturing & Healthcare",
+    description:
+      "We build AI agents and automation systems for manufacturing and healthcare—Cassandra (RAG document intelligence), Mechintosh (manufacturing automations), healthcare data analysis, and project management workflows.",
+    images: [
+      {
+        url: "/placeholder-logo.png",
+        width: 1200,
+        height: 630,
+        alt: "Meghamsys",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Meghamsys — Engineering for Manufacturing & Healthcare",
+    description:
+      "AI agents and automation systems for manufacturing and healthcare—Cassandra (RAG), Mechintosh, analytics, and PM workflows.",
+    images: ["/placeholder-logo.png"],
+  },
+  manifest: "/site.webmanifest",
   icons: {
     icon: [
       {

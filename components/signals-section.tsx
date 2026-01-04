@@ -11,32 +11,32 @@ const signals = [
   {
     date: "CORE SERVICE",
     title: "AI AGENTS & WORKFLOWS",
-    note: "Automated intelligence layers for autonomous business orchestration and optimization.",
+    note: "Purpose-built AI agents that automate operational and engineering workflows with measurable outcomes.",
   },
   {
     date: "CORE SERVICE",
-    title: "IOT PLATFORMS",
-    note: "Scalable infrastructure for connected hardware and real-time sensory data processing.",
+    title: "CASSANDRA / DOCUMENT INTELLIGENCE",
+    note: "Intelligent document analysis and retrieval using a dedicated RAG model for structured answers and citations.",
   },
   {
     date: "CORE SERVICE",
-    title: "MOBILE APPLICATIONS",
-    note: "High-performance native and cross-platform mobile experiences with cloud integration.",
+    title: "MECHINTOSH / MANUFACTURING AUTOMATION",
+    note: "Custom automations for manufacturing workflows—repeatable processes, data pipelines, and system actions.",
   },
   {
     date: "CORE SERVICE",
-    title: "ENGINEERING",
-    note: "Robust architectural design and implementation of mission-critical software systems.",
+    title: "HEALTHCARE DATA ANALYSIS",
+    note: "Analytics and reporting pipelines for healthcare data with careful handling of privacy and data quality.",
   },
   {
     date: "CORE SERVICE",
-    title: "FULL-STACK WEB",
-    note: "Comprehensive web development focusing on performance, security, and scalability.",
+    title: "PROJECT MANAGEMENT WORKFLOWS",
+    note: "Automation for planning, tracking, and delivery—status signals, handoffs, and structured reporting.",
   },
   {
     date: "CORE SERVICE",
     title: "SYSTEM INTEGRATION",
-    note: "Seamless connection of disparate technical environments into a unified digital ecosystem.",
+    note: "Reliable integration across enterprise systems and custom platforms with stable APIs and data contracts.",
   },
 ]
 
@@ -47,6 +47,7 @@ export function SignalsSection() {
   const cardsRef = useRef<HTMLDivElement>(null)
   const cursorRef = useRef<HTMLDivElement>(null)
   const [isHovering, setIsHovering] = useState(false)
+  const isAutoScrollPausedRef = useRef(false)
 
   useEffect(() => {
     if (!sectionRef.current || !cursorRef.current) return
@@ -78,6 +79,54 @@ export function SignalsSection() {
       section.removeEventListener("mousemove", handleMouseMove)
       section.removeEventListener("mouseenter", handleMouseEnter)
       section.removeEventListener("mouseleave", handleMouseLeave)
+    }
+  }, [])
+
+  useEffect(() => {
+    const container = scrollRef.current
+    if (!container) return
+
+    const prefersReducedMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches
+    if (prefersReducedMotion) return
+
+    let rafId = 0
+    const speedPxPerFrame = 0.18
+
+    const tick = () => {
+      const el = scrollRef.current
+      if (!el) return
+
+      if (!isAutoScrollPausedRef.current) {
+        const halfScrollWidth = el.scrollWidth / 2
+        el.scrollLeft += speedPxPerFrame
+        if (el.scrollLeft >= halfScrollWidth) {
+          el.scrollLeft = 0
+        }
+      }
+
+      rafId = window.requestAnimationFrame(tick)
+    }
+
+    const pause = () => {
+      isAutoScrollPausedRef.current = true
+    }
+    const resume = () => {
+      isAutoScrollPausedRef.current = false
+    }
+
+    container.addEventListener("pointerenter", pause)
+    container.addEventListener("pointerleave", resume)
+    container.addEventListener("focusin", pause)
+    container.addEventListener("focusout", resume)
+
+    rafId = window.requestAnimationFrame(tick)
+
+    return () => {
+      window.cancelAnimationFrame(rafId)
+      container.removeEventListener("pointerenter", pause)
+      container.removeEventListener("pointerleave", resume)
+      container.removeEventListener("focusin", pause)
+      container.removeEventListener("focusout", resume)
     }
   }, [])
 
@@ -155,8 +204,8 @@ export function SignalsSection() {
         className="flex gap-8 overflow-x-auto pb-8 pr-12 scrollbar-hide"
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
-        {signals.map((signal, index) => (
-          <SignalCard key={index} signal={signal} index={index} />
+        {[...signals, ...signals].map((signal, index) => (
+          <SignalCard key={index} signal={signal} index={index % signals.length} />
         ))}
       </div>
     </section>

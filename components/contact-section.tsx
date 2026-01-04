@@ -12,6 +12,28 @@ export function ContactSection() {
   const headerRef = useRef<HTMLDivElement>(null)
   const formRef = useRef<HTMLFormElement>(null)
 
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+
+    const form = event.currentTarget
+    const formData = new FormData(form)
+
+    const name = (formData.get("name") ?? "").toString().trim()
+    const email = (formData.get("email") ?? "").toString().trim()
+    const message = (formData.get("message") ?? "").toString().trim()
+
+    if (!name || !email || !message) {
+      window.alert("Please fill out your name, email, and inquiry.")
+      return
+    }
+
+    const subject = "Meghamsys — Project inquiry"
+    const body = [`Name: ${name}`, `Email: ${email}`, "", message].join("\n")
+
+    window.location.href = `mailto:hello@meghamsys.io?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+    form.reset()
+  }
+
   useEffect(() => {
     if (!sectionRef.current) return
 
@@ -60,35 +82,63 @@ export function ContactSection() {
         <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">05 / Engagement</span>
         <h2 className="mt-4 font-[var(--font-bebas)] text-5xl md:text-7xl tracking-tight">CONTACT US</h2>
         <p className="mt-4 font-mono text-sm text-muted-foreground max-w-md uppercase tracking-wider">
-          Initiate protocol for digital transformation or system integration.
+          AI agents, Cassandra (RAG), Mechintosh automations, healthcare analytics, project workflows.
         </p>
       </div>
 
-      <form ref={formRef} className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 max-w-4xl">
+      <form
+        ref={formRef}
+        className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 max-w-4xl"
+        onSubmit={handleSubmit}
+      >
         <div className="flex flex-col gap-2">
-          <label className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Full Name</label>
+          <label
+            htmlFor="contact-name"
+            className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground"
+          >
+            Full Name
+          </label>
           <input
+            id="contact-name"
+            name="name"
             type="text"
             className="bg-transparent border-b border-border/50 py-3 font-mono text-sm focus:outline-none focus:border-accent transition-colors"
             placeholder="SYSTEM_USER"
+            autoComplete="name"
+            required
           />
         </div>
         <div className="flex flex-col gap-2">
-          <label className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Email Address</label>
+          <label
+            htmlFor="contact-email"
+            className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground"
+          >
+            Email Address
+          </label>
           <input
+            id="contact-email"
+            name="email"
             type="email"
             className="bg-transparent border-b border-border/50 py-3 font-mono text-sm focus:outline-none focus:border-accent transition-colors"
             placeholder="USER@MEGHAMSYS.IO"
+            autoComplete="email"
+            required
           />
         </div>
         <div className="flex flex-col gap-2 md:col-span-2">
-          <label className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+          <label
+            htmlFor="contact-message"
+            className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground"
+          >
             Project Inquiry
           </label>
           <textarea
+            id="contact-message"
+            name="message"
             rows={4}
             className="bg-transparent border-b border-border/50 py-3 font-mono text-sm focus:outline-none focus:border-accent transition-colors resize-none"
             placeholder="DESCRIBE_TECHNICAL_REQUIREMENTS"
+            required
           />
         </div>
         <div className="pt-4">

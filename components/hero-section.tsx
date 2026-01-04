@@ -46,6 +46,7 @@ export function HeroSection() {
 
       {/* Main content */}
       <div ref={contentRef} className="flex-1 w-full">
+        <h1 className="sr-only">Meghamsys — AI Agents for Manufacturing & Healthcare</h1>
         <SplitFlapAudioProvider>
           <div className="relative">
             <SplitFlapText text="MEGHAMSYS" speed={80} />
@@ -56,12 +57,13 @@ export function HeroSection() {
         </SplitFlapAudioProvider>
 
         <h2 className="font-[var(--font-bebas)] text-muted-foreground/60 text-[clamp(1rem,3vw,2rem)] mt-4 tracking-wide uppercase">
-          Intelligent Infrastructure & Digital Architecture
+          AI Agents • Document Intelligence • Manufacturing Automation • Analytics
         </h2>
 
         <p className="mt-12 max-w-md font-mono text-sm text-muted-foreground leading-relaxed">
-          We architect resilient digital systems and high-performance infrastructure. Engineered for scale, built for
-          the future of enterprise intelligence.
+          We build AI agents and automation systems dedicated to manufacturing and healthcare—Cassandra for intelligent
+          document analysis (RAG), Mechintosh for manufacturing automations, healthcare data analysis, and project
+          management workflows.
         </p>
 
         <div className="mt-16 flex items-center gap-8">
