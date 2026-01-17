@@ -39,22 +39,12 @@ export function VisionSection() {
             />
 
             {/* Content */}
-            <div className="relative z-10 container px-4 md:px-6">
+            <div className="relative z-10 container px-4 md:px-6 h-full flex items-end pb-32">
                 <motion.div
                     style={{ opacity }}
-                    className="max-w-4xl mx-auto text-center"
+                    className="max-w-xl text-left"
                 >
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.2 }}
-                        className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm text-xs font-mono text-white/60 mb-8"
-                    >
-                        <Sparkles className="w-3 h-3 text-amber-200" />
-                        <span>INTELLIGENCE REIMAGINED</span>
-                    </motion.div>
-
-                    <h2 className="font-serif text-5xl md:text-7xl lg:text-8xl font-medium leading-[0.9] text-white tracking-tight mb-8">
+                    <h2 className="font-serif text-5xl md:text-7xl lg:text-8xl font-medium leading-[1.1] text-white/90 tracking-tight mb-6">
                         <span className="block overflow-hidden">
                             <motion.span
                                 initial={{ y: "100%" }}
@@ -62,7 +52,7 @@ export function VisionSection() {
                                 transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
                                 className="block"
                             >
-                                The Chain That Binds
+                                Chain That Binds
                             </motion.span>
                         </span>
                         <span className="block overflow-hidden">
@@ -70,9 +60,9 @@ export function VisionSection() {
                                 initial={{ y: "100%" }}
                                 whileInView={{ y: 0 }}
                                 transition={{ duration: 1, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-                                className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-300 to-amber-200"
+                                className="block"
                             >
-                                Art to Algorithms
+                                Art to <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/60">Code</span>
                             </motion.span>
                         </span>
                     </h2>
@@ -81,20 +71,18 @@ export function VisionSection() {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.4 }}
-                        className="text-lg md:text-xl text-white/70 max-w-2xl mx-auto leading-relaxed mb-12"
+                        className="text-lg text-white/60 max-w-lg leading-relaxed mb-10"
                     >
-                        In a unique convergence of logic and aesthetics, we forge systems that don't just calculate—they create. Intelligence is the new medium; we are the sculptors.
+                        Odio suspendisse quam purus suscipit non tellus metus blandit egestas. Malesuada ut donec est id ut aliquam facilisi sit etiam.
                     </motion.p>
 
                     <motion.div
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.6 }}
                     >
-                        <button className="group relative inline-flex h-14 items-center justify-center gap-3 overflow-hidden rounded-full bg-white px-8 text-sm font-semibold text-black transition-all hover:bg-white/90 hover:scale-105">
-                            <span className="relative z-10">Start the Transformation</span>
-                            <ArrowRight className="relative z-10 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                            <div className="absolute inset-0 -z-10 translate-y-full bg-gradient-to-r from-blue-200 to-amber-100 transition-transform duration-300 group-hover:translate-y-0" />
+                        <button className="group relative inline-flex h-12 items-center justify-center gap-2 overflow-hidden rounded-full bg-white/10 backdrop-blur-md border border-white/20 px-8 text-sm font-medium text-white transition-all hover:bg-white/20 hover:scale-105">
+                            <span className="relative z-10">Get Started</span>
                         </button>
                     </motion.div>
                 </motion.div>
