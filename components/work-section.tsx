@@ -94,26 +94,28 @@ export function WorkSection() {
   }, [])
 
   return (
-    <section ref={sectionRef} id="work" className="relative py-32 pl-6 md:pl-28 pr-6 md:pr-12">
-      {/* Section header */}
-      <div ref={headerRef} className="mb-16 flex items-end justify-between">
-        <div>
-          <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">02 / Portfolio</span>
-          <h2 className="mt-4 font-[var(--font-bebas)] text-5xl md:text-7xl tracking-tight">SELECTED WORK</h2>
+    <section ref={sectionRef} id="work" className="relative py-32 xl:py-40">
+      <div className="max-w-[1600px] mx-auto px-6 md:px-28 xl:px-32 2xl:px-40">
+        {/* Section header */}
+        <div ref={headerRef} className="mb-16 xl:mb-20 flex items-end justify-between">
+          <div>
+            <span className="font-mono text-[10px] xl:text-xs uppercase tracking-[0.3em] text-accent">02 / Portfolio</span>
+            <h2 className="mt-4 font-[var(--font-bebas)] text-5xl md:text-7xl xl:text-8xl 2xl:text-9xl tracking-tight">SELECTED WORK</h2>
+          </div>
+          <p className="hidden md:block max-w-xs xl:max-w-md font-mono text-xs xl:text-sm text-muted-foreground text-right leading-relaxed">
+            Delivery across document intelligence, agent workflows, and production-grade systems.
+          </p>
         </div>
-        <p className="hidden md:block max-w-xs font-mono text-xs text-muted-foreground text-right leading-relaxed">
-          Delivery across document intelligence, agent workflows, and production-grade systems.
-        </p>
-      </div>
 
-      {/* Asymmetric grid */}
-      <div
-        ref={gridRef}
-        className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 auto-rows-[180px] md:auto-rows-[200px]"
-      >
-        {experiments.map((experiment, index) => (
-          <WorkCard key={index} experiment={experiment} index={index} persistHover={index === 0} />
-        ))}
+        {/* Asymmetric grid */}
+        <div
+          ref={gridRef}
+          className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 xl:gap-8 auto-rows-[180px] md:auto-rows-[200px] xl:auto-rows-[240px] 2xl:auto-rows-[280px]"
+        >
+          {experiments.map((experiment, index) => (
+            <WorkCard key={index} experiment={experiment} index={index} persistHover={index === 0} />
+          ))}
+        </div>
       </div>
     </section>
   )
@@ -179,7 +181,7 @@ function WorkCard({
         </span>
         <h3
           className={cn(
-            "mt-3 font-[var(--font-bebas)] text-2xl md:text-4xl tracking-tight transition-colors duration-300",
+            "mt-3 font-[var(--font-bebas)] text-2xl md:text-4xl xl:text-5xl 2xl:text-6xl tracking-tight transition-colors duration-300",
             isActive ? "text-accent" : "text-foreground",
           )}
         >
@@ -191,7 +193,7 @@ function WorkCard({
       <div className="relative z-10">
         <p
           className={cn(
-            "font-mono text-xs text-muted-foreground leading-relaxed transition-all duration-500 max-w-[280px]",
+            "font-mono text-xs xl:text-sm text-muted-foreground leading-relaxed transition-all duration-500 max-w-[280px] xl:max-w-[340px]",
             isActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2",
           )}
         >

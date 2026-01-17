@@ -1,145 +1,91 @@
 "use client"
 
-import { useRef, useState, useEffect } from "react"
+import { useRef, useEffect } from "react"
 import { cn } from "@/lib/utils"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { ArrowUpRight } from "lucide-react"
 
 gsap.registerPlugin(ScrollTrigger)
 
 const signals = [
   {
-    date: "CORE SERVICE",
-    title: "AI AGENTS & WORKFLOWS",
+    id: "01",
+    cat: "Core",
+    title: "AI Agents & Workflows",
     note: "Purpose-built AI agents that automate operational and engineering workflows with measurable outcomes.",
+    // Neural Nodes Pattern
+    patternStyle: {
+      backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.15'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zzM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+    }
   },
   {
-    date: "CORE SERVICE",
-    title: "CASSANDRA / DOCUMENT INTELLIGENCE",
+    id: "02",
+    cat: "Intel",
+    title: "Cassandra / Document RAG",
     note: "Intelligent document analysis and retrieval using a dedicated RAG model for structured answers and citations.",
+    // Document Lines Pattern
+    patternStyle: {
+      backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%239C92AC' fill-opacity='0.2' fill-rule='evenodd'%3E%3Cpath d='M0 38.59l2.83-2.83 1.41 1.41L1.41 40H0v-1.41zM0 1.4l2.83 2.83 1.41-1.41L1.41 0H0v1.41zM38.59 40l-2.83-2.83 1.41-1.41L40 38.59V40h-1.41zM40 1.41l-2.83 2.83-1.41-1.41L38.59 0H40v1.41zM20 18.6l2.83-2.83 1.41 1.41L21.41 20l2.83 2.83-1.41 1.41L20 21.41l-2.83 2.83-1.41-1.41L18.59 20l-2.83-2.83 1.41-1.41L20 18.59z'/%3E%3C/g%3E%3C/svg%3E")`
+    }
   },
   {
-    date: "CORE SERVICE",
-    title: "MECHINTOSH / MANUFACTURING AUTOMATION",
+    id: "03",
+    cat: "Auto",
+    title: "Mechintosh Automation",
     note: "Custom automations for manufacturing workflows—repeatable processes, data pipelines, and system actions.",
+    // Diagonal Construction Lines
+    patternStyle: {
+      backgroundImage: `url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%239C92AC' fill-opacity='0.2' fill-rule='evenodd'%3E%3Cpath d='M0 0h20L0 20z'/%3E%3C/g%3E%3C/svg%3E")`
+    }
   },
   {
-    date: "CORE SERVICE",
-    title: "HEALTHCARE DATA ANALYSIS",
+    id: "04",
+    cat: "Data",
+    title: "Healthcare Analytics",
     note: "Analytics and reporting pipelines for healthcare data with careful handling of privacy and data quality.",
+    // Cross/Plus Pattern
+    patternStyle: {
+      backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.15'%3E%3Cpath d='M30 30h4v4h-4v4h-4v-4h-4v-4h4v-4h4v4z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+    }
   },
   {
-    date: "CORE SERVICE",
-    title: "PROJECT MANAGEMENT WORKFLOWS",
+    id: "05",
+    cat: "Mgmt",
+    title: "Project Management",
     note: "Automation for planning, tracking, and delivery—status signals, handoffs, and structured reporting.",
+    // Grid Pattern
+    patternStyle: {
+      backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0V0zm1 1h38v38H1V1z' fill='%239C92AC' fill-opacity='0.15' fill-rule='evenodd'/%3E%3C/svg%3E")`
+    }
   },
   {
-    date: "CORE SERVICE",
-    title: "SYSTEM INTEGRATION",
+    id: "06",
+    cat: "Sys",
+    title: "System Integration",
     note: "Reliable integration across enterprise systems and custom platforms with stable APIs and data contracts.",
+    // Circuit Board / Tech Lines
+    patternStyle: {
+      backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%239C92AC' fill-opacity='0.15' fill-rule='evenodd'/%3E%3C/svg%3E")`
+    }
   },
 ]
 
 export function SignalsSection() {
-  const scrollRef = useRef<HTMLDivElement>(null)
   const sectionRef = useRef<HTMLElement>(null)
   const headerRef = useRef<HTMLDivElement>(null)
-  const cardsRef = useRef<HTMLDivElement>(null)
-  const cursorRef = useRef<HTMLDivElement>(null)
-  const [isHovering, setIsHovering] = useState(false)
-  const isAutoScrollPausedRef = useRef(false)
+  const gridRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (!sectionRef.current || !cursorRef.current) return
-
-    const section = sectionRef.current
-    const cursor = cursorRef.current
-
-    const handleMouseMove = (e: MouseEvent) => {
-      const rect = section.getBoundingClientRect()
-      const x = e.clientX - rect.left
-      const y = e.clientY - rect.top
-
-      gsap.to(cursor, {
-        x: x,
-        y: y,
-        duration: 0.5,
-        ease: "power3.out",
-      })
-    }
-
-    const handleMouseEnter = () => setIsHovering(true)
-    const handleMouseLeave = () => setIsHovering(false)
-
-    section.addEventListener("mousemove", handleMouseMove)
-    section.addEventListener("mouseenter", handleMouseEnter)
-    section.addEventListener("mouseleave", handleMouseLeave)
-
-    return () => {
-      section.removeEventListener("mousemove", handleMouseMove)
-      section.removeEventListener("mouseenter", handleMouseEnter)
-      section.removeEventListener("mouseleave", handleMouseLeave)
-    }
-  }, [])
-
-  useEffect(() => {
-    const container = scrollRef.current
-    if (!container) return
-
-    const prefersReducedMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches
-    if (prefersReducedMotion) return
-
-    let rafId = 0
-    const speedPxPerFrame = 0.18
-
-    const tick = () => {
-      const el = scrollRef.current
-      if (!el) return
-
-      if (!isAutoScrollPausedRef.current) {
-        const halfScrollWidth = el.scrollWidth / 2
-        el.scrollLeft += speedPxPerFrame
-        if (el.scrollLeft >= halfScrollWidth) {
-          el.scrollLeft = 0
-        }
-      }
-
-      rafId = window.requestAnimationFrame(tick)
-    }
-
-    const pause = () => {
-      isAutoScrollPausedRef.current = true
-    }
-    const resume = () => {
-      isAutoScrollPausedRef.current = false
-    }
-
-    container.addEventListener("pointerenter", pause)
-    container.addEventListener("pointerleave", resume)
-    container.addEventListener("focusin", pause)
-    container.addEventListener("focusout", resume)
-
-    rafId = window.requestAnimationFrame(tick)
-
-    return () => {
-      window.cancelAnimationFrame(rafId)
-      container.removeEventListener("pointerenter", pause)
-      container.removeEventListener("pointerleave", resume)
-      container.removeEventListener("focusin", pause)
-      container.removeEventListener("focusout", resume)
-    }
-  }, [])
-
-  useEffect(() => {
-    if (!sectionRef.current || !headerRef.current || !cardsRef.current) return
+    if (!sectionRef.current || !headerRef.current || !gridRef.current) return
 
     const ctx = gsap.context(() => {
-      // Header slide in from left
+      // Header slide up
       gsap.fromTo(
         headerRef.current,
-        { x: -60, opacity: 0 },
+        { y: 60, opacity: 0 },
         {
-          x: 0,
+          y: 0,
           opacity: 1,
           duration: 1,
           ease: "power3.out",
@@ -151,20 +97,21 @@ export function SignalsSection() {
         },
       )
 
-      const cards = cardsRef.current?.querySelectorAll("article")
-      if (cards) {
+      // Grid items stagger
+      const items = gridRef.current?.querySelectorAll(".service-item")
+      if (items) {
         gsap.fromTo(
-          cards,
-          { x: -100, opacity: 0 },
+          items,
+          { y: 40, opacity: 0 },
           {
-            x: 0,
+            y: 0,
             opacity: 1,
             duration: 0.8,
-            stagger: 0.2,
+            stagger: 0.1,
             ease: "power3.out",
             scrollTrigger: {
-              trigger: cardsRef.current,
-              start: "top 90%",
+              trigger: gridRef.current,
+              start: "top 85%",
               toggleActions: "play none none reverse",
             },
           },
@@ -176,89 +123,62 @@ export function SignalsSection() {
   }, [])
 
   return (
-    <section id="signals" ref={sectionRef} className="relative py-32 pl-6 md:pl-28">
-      <div
-        ref={cursorRef}
-        className={cn(
-          "pointer-events-none absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 z-50",
-          "w-12 h-12 rounded-full border-2 border-accent bg-accent",
-          "transition-opacity duration-300",
-          isHovering ? "opacity-100" : "opacity-0",
-        )}
-      />
+    <section id="signals" ref={sectionRef} className="relative py-32 bg-background">
+      <div className="container mx-auto px-6 md:px-12 xl:px-24">
 
-      {/* Section header */}
-      <div ref={headerRef} className="mb-16 pr-6 md:pr-12">
-        <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">01 / Services</span>
-        <h2 className="mt-4 font-[var(--font-bebas)] text-5xl md:text-7xl tracking-tight uppercase">
-          WHAT SERVICES WE PROVIDE
-        </h2>
-      </div>
+        {/* Section header */}
+        <div ref={headerRef} className="mb-20 flex flex-col md:flex-row md:items-end justify-between gap-8 border-b border-border pb-8">
+          <div>
+            <span className="font-mono text-xs uppercase tracking-widest text-muted-foreground block mb-4">
+              System Capabilities
+            </span>
+            <h2 className="font-sans font-medium text-4xl md:text-5xl lg:text-6xl tracking-tight text-foreground">
+              Services
+            </h2>
+          </div>
+          <div className="max-w-md">
+            <p className="font-mono text-xs text-muted-foreground leading-relaxed">
+              Deploying intelligent infrastructure for the next generation of industrial efficiency.
+            </p>
+          </div>
+        </div>
 
-      {/* Horizontal scroll container */}
-      <div
-        ref={(el) => {
-          scrollRef.current = el
-          cardsRef.current = el
-        }}
-        className="flex gap-8 overflow-x-auto pb-8 pr-12 scrollbar-hide"
-        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-      >
-        {[...signals, ...signals].map((signal, index) => (
-          <SignalCard key={index} signal={signal} index={index % signals.length} />
-        ))}
+        {/* Services Grid */}
+        <div ref={gridRef} className="grid md:grid-cols-2 lg:grid-cols-3 border-l border-border">
+          {signals.map((signal, index) => (
+            <div
+              key={index}
+              className="service-item group relative border-r border-b border-border p-8 lg:p-12 hover:bg-accent/5 transition-colors duration-300 overflow-hidden"
+            >
+              {/* Background Pattern */}
+              <div
+                className="absolute inset-0 pointer-events-none transition-opacity duration-500 opacity-[0.15] group-hover:opacity-40 bg-center bg-repeat"
+                style={signal.patternStyle}
+              />
+
+              <div className="relative z-10">
+                <div className="flex justify-between items-start mb-12">
+                  <span className="font-mono text-xs text-muted-foreground/60">{signal.id}</span>
+                  <span className="font-mono text-xs text-accent uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity duration-300">{signal.cat}</span>
+                </div>
+
+                <h3 className="font-sans text-2xl lg:text-3xl font-medium mb-4 pr-8 group-hover:text-accent transition-colors duration-200">
+                  {signal.title}
+                </h3>
+
+                <p className="font-mono text-xs text-muted-foreground leading-relaxed mb-8 text-pretty">
+                  {signal.note}
+                </p>
+
+                <div className="absolute bottom-8 right-8 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+                  <ArrowUpRight className="w-5 h-5 text-accent" />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
       </div>
     </section>
-  )
-}
-
-function SignalCard({
-  signal,
-  index,
-}: {
-  signal: { date: string; title: string; note: string }
-  index: number
-}) {
-  return (
-    <article
-      className={cn(
-        "group relative flex-shrink-0 w-80",
-        "transition-transform duration-500 ease-out",
-        "hover:-translate-y-2",
-      )}
-    >
-      {/* Card with paper texture effect */}
-      <div className="relative bg-card border border-border/50 md:border-t md:border-l md:border-r-0 md:border-b-0 p-8">
-        {/* Top torn edge effect */}
-        <div className="absolute -top-px left-0 right-0 h-px bg-gradient-to-r from-transparent via-border/40 to-transparent" />
-
-        {/* Issue number - editorial style */}
-        <div className="flex items-baseline justify-between mb-8">
-          <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
-            No. {String(index + 1).padStart(2, "0")}
-          </span>
-          <time className="font-mono text-[10px] text-muted-foreground/60">{signal.date}</time>
-        </div>
-
-        {/* Title */}
-        <h3 className="font-[var(--font-bebas)] text-4xl tracking-tight mb-4 group-hover:text-accent transition-colors duration-300">
-          {signal.title}
-        </h3>
-
-        {/* Divider line */}
-        <div className="w-12 h-px bg-accent/60 mb-6 group-hover:w-full transition-all duration-500" />
-
-        {/* Description */}
-        <p className="font-mono text-xs text-muted-foreground leading-relaxed">{signal.note}</p>
-
-        {/* Bottom right corner fold effect */}
-        <div className="absolute bottom-0 right-0 w-6 h-6 overflow-hidden">
-          <div className="absolute bottom-0 right-0 w-8 h-8 bg-background rotate-45 translate-x-4 translate-y-4 border-t border-l border-border/30" />
-        </div>
-      </div>
-
-      {/* Shadow/depth layer */}
-      <div className="absolute inset-0 -z-10 translate-x-1 translate-y-1 bg-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-    </article>
   )
 }

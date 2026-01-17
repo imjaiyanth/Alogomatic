@@ -5,11 +5,9 @@ import { cn } from "@/lib/utils"
 import { Logo } from "@/components/logo"
 
 const navItems = [
-  { id: "hero", label: "Index" },
-  { id: "signals", label: "Signals" },
-  { id: "work", label: "Experiments" },
-  { id: "principles", label: "Principles" },
-  { id: "colophon", label: "Colophon" },
+  { id: "hero", label: "Overview" },
+  { id: "features", label: "Platform" },
+  { id: "contact", label: "Contact" },
 ]
 
 export function SideNav() {
@@ -42,24 +40,35 @@ export function SideNav() {
     }
   }
 
+  const isHero = activeSection === "hero"
+
   return (
-    <nav className="fixed left-0 top-0 z-50 h-screen w-16 md:w-20 hidden md:flex flex-col justify-between border-r border-border/30 bg-background/80 backdrop-blur-sm py-8">
+    <nav
+      className={cn(
+        "fixed left-0 top-0 z-50 h-screen w-16 md:w-20 hidden md:flex flex-col justify-between border-r backdrop-blur-sm py-8 transition-colors duration-500",
+        isHero ? "bg-transparent border-transparent" : "bg-background/80 border-border/30",
+      )}
+    >
       <div className="flex justify-center">
-        <Logo className="w-8 h-8 text-accent" />
+        <Logo className={cn("w-8 h-8 transition-colors duration-300", isHero ? "text-white" : "text-accent")} />
       </div>
-      
+
       <div className="flex flex-col gap-6 px-4">
         {navItems.map(({ id, label }) => (
           <button key={id} onClick={() => scrollToSection(id)} className="group relative flex items-center gap-3">
             <span
               className={cn(
                 "h-1.5 w-1.5 rounded-full transition-all duration-300",
-                activeSection === id ? "bg-accent scale-125" : "bg-muted-foreground/40 group-hover:bg-foreground/60",
+                activeSection === id
+                  ? "bg-accent scale-125"
+                  : isHero
+                    ? "bg-white/40 group-hover:bg-white"
+                    : "bg-muted-foreground/40 group-hover:bg-foreground/60",
               )}
             />
             <span
               className={cn(
-                "absolute left-6 font-mono text-[10px] uppercase tracking-widest opacity-0 transition-all duration-200 group-hover:opacity-100 group-hover:left-8 whitespace-nowrap",
+                "absolute left-6 font-mono text-[10px] uppercase tracking-widest opacity-0 transition-opacity duration-200 group-hover:opacity-100 group-hover:left-8 whitespace-nowrap",
                 activeSection === id ? "text-accent" : "text-muted-foreground",
               )}
             >

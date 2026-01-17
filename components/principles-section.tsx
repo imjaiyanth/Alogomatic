@@ -93,15 +93,16 @@ export function PrinciplesSection() {
   }, [])
 
   return (
-    <section ref={sectionRef} id="principles" className="relative py-32 pl-6 md:pl-28 pr-6 md:pr-12">
-      {/* Section header */}
-      <div ref={headerRef} className="mb-24">
-        <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">03 / Principles</span>
-        <h2 className="mt-4 font-[var(--font-bebas)] text-5xl md:text-7xl tracking-tight">HOW WE WORK</h2>
-      </div>
+    <section ref={sectionRef} id="principles" className="relative py-32 xl:py-40 border-t border-border/30">
+      <div className="max-w-[1600px] mx-auto px-6 md:px-28 xl:px-32 2xl:px-40">
+        {/* Section header */}
+        <div ref={headerRef} className="mb-16 xl:mb-24">
+          <span className="font-mono text-[10px] xl:text-xs uppercase tracking-[0.3em] text-accent">03 / Philosophy</span>
+          <h2 className="mt-4 font-[var(--font-bebas)] text-5xl md:text-7xl xl:text-8xl 2xl:text-9xl tracking-tight">HOW WE WORK</h2>
+        </div>
 
-      {/* Staggered principles */}
-      <div ref={principlesRef} className="space-y-24 md:space-y-32">
+        {/* Staggered principles */}
+        <div ref={principlesRef} className="space-y-24 md:space-y-32 xl:space-y-40">
         {principles.map((principle, index) => (
           <article
             key={index}
@@ -114,7 +115,7 @@ export function PrinciplesSection() {
               {principle.number} / {principle.titleParts[0].text.split(" ")[0]}
             </span>
 
-            <h3 className="font-[var(--font-bebas)] text-4xl md:text-6xl lg:text-8xl tracking-tight leading-none">
+            <h3 className="font-[var(--font-bebas)] text-4xl md:text-6xl lg:text-8xl xl:text-9xl 2xl:text-[10rem] tracking-tight leading-none">
               {principle.titleParts.map((part, i) =>
                 part.highlight ? (
                   <HighlightText key={i} parallaxSpeed={0.6}>
@@ -127,14 +128,15 @@ export function PrinciplesSection() {
             </h3>
 
             {/* Description */}
-            <p className="mt-6 max-w-md font-mono text-sm text-muted-foreground leading-relaxed">
+            <p className="mt-6 xl:mt-8 max-w-md xl:max-w-xl font-mono text-sm xl:text-base text-muted-foreground leading-relaxed">
               {principle.description}
             </p>
 
             {/* Decorative line */}
-            <div className={`mt-8 h-[1px] bg-border w-24 md:w-48 ${principle.align === "right" ? "mr-0" : "ml-0"}`} />
+            <div className={`mt-8 xl:mt-10 h-[1px] bg-border w-24 md:w-48 xl:w-64 ${principle.align === "right" ? "mr-0" : "ml-0"}`} />
           </article>
         ))}
+        </div>
       </div>
     </section>
   )

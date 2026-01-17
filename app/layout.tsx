@@ -1,13 +1,13 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { IBM_Plex_Sans, IBM_Plex_Mono, Bebas_Neue } from "next/font/google"
+import { DM_Sans, IBM_Plex_Mono, Bebas_Neue } from "next/font/google"
 import { SmoothScroll } from "@/components/smooth-scroll"
 import "./globals.css"
 
-const ibmPlexSans = IBM_Plex_Sans({
+const dmSans = DM_Sans({
   weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
-  variable: "--font-ibm-plex-sans",
+  variable: "--font-dm-sans",
 })
 const ibmPlexMono = IBM_Plex_Mono({
   weight: ["400", "500"],
@@ -80,7 +80,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark bg-background">
       <body
-        className={`${ibmPlexSans.variable} ${bebasNeue.variable} ${ibmPlexMono.variable} font-sans antialiased overflow-x-hidden`}
+        className={`${dmSans.variable} ${bebasNeue.variable} ${ibmPlexMono.variable} font-sans antialiased overflow-x-hidden`}
       >
         <div className="noise-overlay" aria-hidden="true" />
         <SmoothScroll>{children}</SmoothScroll>

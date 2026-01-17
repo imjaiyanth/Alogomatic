@@ -1,23 +1,15 @@
 "use client"
 
-import { useRef, useEffect } from "react"
-import gsap from "gsap"
-import { ScrollTrigger } from "gsap/ScrollTrigger"
-import { BitmapChevron } from "./bitmap-chevron"
-
-gsap.registerPlugin(ScrollTrigger)
+import { useRef, useState } from "react"
+import { motion } from "framer-motion"
+import { ArrowRight, Send } from "lucide-react"
 
 export function ContactSection() {
-  const sectionRef = useRef<HTMLElement>(null)
-  const headerRef = useRef<HTMLDivElement>(null)
-  const formRef = useRef<HTMLFormElement>(null)
-
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-
+    // ... handled same as before ...
     const form = event.currentTarget
     const formData = new FormData(form)
-
     const name = (formData.get("name") ?? "").toString().trim()
     const email = (formData.get("email") ?? "").toString().trim()
     const message = (formData.get("message") ?? "").toString().trim()
@@ -29,128 +21,111 @@ export function ContactSection() {
 
     const subject = "Meghamsys — Project inquiry"
     const body = [`Name: ${name}`, `Email: ${email}`, "", message].join("\n")
-
     window.location.href = `mailto:hello@meghamsys.io?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
     form.reset()
   }
 
-  useEffect(() => {
-    if (!sectionRef.current) return
-
-    const ctx = gsap.context(() => {
-      if (headerRef.current) {
-        gsap.from(headerRef.current, {
-          x: -60,
-          opacity: 0,
-          duration: 1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: headerRef.current,
-            start: "top 85%",
-            toggleActions: "play none none reverse",
-          },
-        })
-      }
-
-      if (formRef.current) {
-        const inputs = formRef.current.querySelectorAll("div")
-        gsap.from(inputs, {
-          y: 30,
-          opacity: 0,
-          duration: 0.8,
-          stagger: 0.1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: formRef.current,
-            start: "top 85%",
-            toggleActions: "play none none reverse",
-          },
-        })
-      }
-    }, sectionRef)
-
-    return () => ctx.revert()
-  }, [])
-
   return (
-    <section
-      ref={sectionRef}
-      id="contact"
-      className="relative py-32 pl-6 md:pl-28 pr-6 md:pr-12 border-t border-border/30"
-    >
-      <div ref={headerRef} className="mb-16">
-        <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">05 / Engagement</span>
-        <h2 className="mt-4 font-[var(--font-bebas)] text-5xl md:text-7xl tracking-tight">CONTACT US</h2>
-        <p className="mt-4 font-mono text-sm text-muted-foreground max-w-md uppercase tracking-wider">
-          AI agents, Cassandra (RAG), Mechintosh automations, healthcare analytics, project workflows.
-        </p>
-      </div>
+    <section id="contact" className="relative py-32 bg-white">
+      <div className="container mx-auto px-6 md:px-12 xl:px-24">
+        <div className="grid lg:grid-cols-2 gap-20">
+          <div>
+            <motion.span
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              className="font-mono text-xs uppercase tracking-widest text-blue-600 mb-8 block"
+            >
+              05 / Engagement
+            </motion.span>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="text-5xl md:text-6xl lg:text-7xl font-bold text-slate-900 tracking-tight mb-8"
+            >
+              Start the <br /> Conversation.
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="text-lg text-slate-600 max-w-md leading-relaxed mb-12"
+            >
+              Ready to transform your operations with intelligent systems?
+              Reach out to discuss your specific requirements.
+            </motion.p>
 
-      <form
-        ref={formRef}
-        className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 max-w-4xl"
-        onSubmit={handleSubmit}
-      >
-        <div className="flex flex-col gap-2">
-          <label
-            htmlFor="contact-name"
-            className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground"
+            <div className="hidden lg:block">
+              <div className="flex items-center gap-4 text-slate-400 text-sm font-mono uppercase tracking-wider">
+                <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                <span>Systems Online: 24/7/365</span>
+              </div>
+            </div>
+          </div>
+
+          <motion.form
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.3 }}
+            onSubmit={handleSubmit}
+            className="space-y-8 bg-slate-50 p-8 md:p-12 rounded-3xl border border-slate-100"
           >
-            Full Name
-          </label>
-          <input
-            id="contact-name"
-            name="name"
-            type="text"
-            className="bg-transparent border-b border-border/50 py-3 font-mono text-sm focus:outline-none focus:border-accent transition-colors"
-            placeholder="SYSTEM_USER"
-            autoComplete="name"
-            required
-          />
+            <FloatingInput id="name" label="Full Name" />
+            <FloatingInput id="email" label="Email Address" type="email" />
+            <FloatingTextArea id="message" label="Project Inquiry" />
+
+            <button
+              type="submit"
+              className="w-full group bg-slate-900 text-white h-14 rounded-xl font-medium tracking-wide flex items-center justify-center gap-3 hover:bg-black transition-all hover:scale-[1.02] active:scale-[0.98]"
+            >
+              <span>Send Message</span>
+              <Send className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+            </button>
+          </motion.form>
         </div>
-        <div className="flex flex-col gap-2">
-          <label
-            htmlFor="contact-email"
-            className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground"
-          >
-            Email Address
-          </label>
-          <input
-            id="contact-email"
-            name="email"
-            type="email"
-            className="bg-transparent border-b border-border/50 py-3 font-mono text-sm focus:outline-none focus:border-accent transition-colors"
-            placeholder="USER@MEGHAMSYS.IO"
-            autoComplete="email"
-            required
-          />
-        </div>
-        <div className="flex flex-col gap-2 md:col-span-2">
-          <label
-            htmlFor="contact-message"
-            className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground"
-          >
-            Project Inquiry
-          </label>
-          <textarea
-            id="contact-message"
-            name="message"
-            rows={4}
-            className="bg-transparent border-b border-border/50 py-3 font-mono text-sm focus:outline-none focus:border-accent transition-colors resize-none"
-            placeholder="DESCRIBE_TECHNICAL_REQUIREMENTS"
-            required
-          />
-        </div>
-        <div className="pt-4">
-          <button
-            type="submit"
-            className="group flex items-center gap-4 px-8 py-4 bg-accent text-background font-mono text-xs uppercase tracking-widest hover:bg-foreground transition-colors"
-          >
-            Send Inquiry
-            <BitmapChevron className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </button>
-        </div>
-      </form>
+      </div>
     </section>
+  )
+}
+
+function FloatingInput({ id, label, type = "text" }: { id: string; label: string; type?: string }) {
+  return (
+    <div className="relative">
+      <input
+        type={type}
+        id={id}
+        name={id}
+        className="block px-4 pb-2.5 pt-5 w-full text-base text-slate-900 bg-white rounded-xl border border-slate-200 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer transition-colors"
+        placeholder=" "
+        required
+      />
+      <label
+        htmlFor={id}
+        className="absolute text-sm text-slate-400 duration-300 transform -translate-y-3 scale-75 top-4 z-10 origin-[0] left-4 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-3 peer-focus:text-blue-600 cursor-text"
+      >
+        {label}
+      </label>
+    </div>
+  )
+}
+
+function FloatingTextArea({ id, label }: { id: string; label: string }) {
+  return (
+    <div className="relative">
+      <textarea
+        id={id}
+        name={id}
+        rows={4}
+        className="block px-4 pb-2.5 pt-5 w-full text-base text-slate-900 bg-white rounded-xl border border-slate-200 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer transition-colors resize-none"
+        placeholder=" "
+        required
+      />
+      <label
+        htmlFor={id}
+        className="absolute text-sm text-slate-400 duration-300 transform -translate-y-3 scale-75 top-4 z-10 origin-[0] left-4 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-3 peer-focus:text-blue-600 cursor-text"
+      >
+        {label}
+      </label>
+    </div>
   )
 }

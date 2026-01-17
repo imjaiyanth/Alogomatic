@@ -1,173 +1,145 @@
 "use client"
 
-import { useRef, useEffect } from "react"
-import gsap from "gsap"
-import { ScrollTrigger } from "gsap/ScrollTrigger"
-
-gsap.registerPlugin(ScrollTrigger)
+import { useRef } from "react"
+import { motion } from "framer-motion"
+import { AnimatedNoise } from "@/components/animated-noise"
 
 export function ColophonSection() {
-  const sectionRef = useRef<HTMLElement>(null)
-  const headerRef = useRef<HTMLDivElement>(null)
-  const gridRef = useRef<HTMLDivElement>(null)
-  const footerRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    if (!sectionRef.current) return
-
-    const ctx = gsap.context(() => {
-      // Header slide in
-      if (headerRef.current) {
-        gsap.from(headerRef.current, {
-          x: -60,
-          opacity: 0,
-          duration: 1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: headerRef.current,
-            start: "top 85%",
-            toggleActions: "play none none reverse",
-          },
-        })
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
       }
+    }
+  }
 
-      // Grid columns fade up with stagger
-      if (gridRef.current) {
-        const columns = gridRef.current.querySelectorAll(":scope > div")
-        gsap.from(columns, {
-          y: 40,
-          opacity: 0,
-          duration: 0.8,
-          stagger: 0.1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: gridRef.current,
-            start: "top 85%",
-            toggleActions: "play none none reverse",
-          },
-        })
-      }
-
-      // Footer fade in
-      if (footerRef.current) {
-        gsap.from(footerRef.current, {
-          y: 20,
-          opacity: 0,
-          duration: 0.8,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: footerRef.current,
-            start: "top 95%",
-            toggleActions: "play none none reverse",
-          },
-        })
-      }
-    }, sectionRef)
-
-    return () => ctx.revert()
-  }, [])
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 }
+  }
 
   return (
     <section
-      ref={sectionRef}
       id="colophon"
-      className="relative py-32 pl-6 md:pl-28 pr-6 md:pr-12 border-t border-border/30"
+      className="relative py-32 pl-6 md:pl-28 pr-6 md:pr-12 bg-black border-t border-white/10 text-white overflow-hidden"
     >
+      <AnimatedNoise opacity={0.12} />
       {/* Section header */}
-      <div ref={headerRef} className="mb-16">
-        <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">06 / Directory</span>
-        <h2 className="mt-4 font-[var(--font-bebas)] text-5xl md:text-7xl tracking-tight">MEGHAMSYS</h2>
-      </div>
+      <motion.div
+        initial={{ opacity: 0, x: -20 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        className="mb-24 relative z-10"
+      >
+        <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/40">06 / Directory</span>
+        <h2 className="mt-6 font-[var(--font-bebas)] text-6xl md:text-9xl tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-white to-white/50">
+          MEGHAMSYS
+        </h2>
+      </motion.div>
 
       {/* Multi-column layout */}
-      <div ref={gridRef} className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 md:gap-12">
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-12 md:gap-12 relative z-10"
+      >
         {/* Expertise */}
-        <div className="col-span-1">
-          <h4 className="font-mono text-[9px] uppercase tracking-[0.3em] text-muted-foreground mb-4">Expertise</h4>
-          <ul className="space-y-2">
-            <li className="font-mono text-xs text-foreground/80 text-pretty">AI Agents & Workflows</li>
-            <li className="font-mono text-xs text-foreground/80 text-pretty">Cassandra (RAG)</li>
-            <li className="font-mono text-xs text-foreground/80 text-pretty">Mechintosh Automations</li>
+        <motion.div variants={itemVariants} className="col-span-1">
+          <h4 className="font-mono text-[9px] uppercase tracking-[0.3em] text-white/30 mb-6">Expertise</h4>
+          <ul className="space-y-4">
+            <FooterLink>AI Agents & Workflows</FooterLink>
+            <FooterLink>Cassandra (RAG)</FooterLink>
+            <FooterLink>Mechintosh Automations</FooterLink>
           </ul>
-        </div>
+        </motion.div>
 
         {/* Development */}
-        <div className="col-span-1">
-          <h4 className="font-mono text-[9px] uppercase tracking-[0.3em] text-muted-foreground mb-4">Dev</h4>
-          <ul className="space-y-2">
-            <li className="font-mono text-xs text-foreground/80 text-pretty">Web Applications</li>
-            <li className="font-mono text-xs text-foreground/80 text-pretty">Data Analysis</li>
-            <li className="font-mono text-xs text-foreground/80 text-pretty">Project Workflows</li>
+        <motion.div variants={itemVariants} className="col-span-1">
+          <h4 className="font-mono text-[9px] uppercase tracking-[0.3em] text-white/30 mb-6">Dev</h4>
+          <ul className="space-y-4">
+            <FooterLink>Web Applications</FooterLink>
+            <FooterLink>Data Analysis</FooterLink>
+            <FooterLink>Project Workflows</FooterLink>
           </ul>
-        </div>
+        </motion.div>
 
         {/* Social */}
-        <div className="col-span-1">
-          <h4 className="font-mono text-[9px] uppercase tracking-[0.3em] text-muted-foreground mb-4">Connect</h4>
-          <ul className="space-y-2">
-            <li>
-              <a href="#" className="font-mono text-xs text-foreground/80 hover:text-accent transition-colors">
-                LinkedIn
-              </a>
-            </li>
-            <li>
-              <a href="#" className="font-mono text-xs text-foreground/80 hover:text-accent transition-colors">
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="#" className="font-mono text-xs text-foreground/80 hover:text-accent transition-colors">
-                Twitter/X
-              </a>
-            </li>
+        <motion.div variants={itemVariants} className="col-span-1">
+          <h4 className="font-mono text-[9px] uppercase tracking-[0.3em] text-white/30 mb-6">Connect</h4>
+          <ul className="space-y-4">
+            <FooterLink href="#">LinkedIn</FooterLink>
+            <FooterLink href="#">GitHub</FooterLink>
+            <FooterLink href="#">Twitter/X</FooterLink>
           </ul>
-        </div>
+        </motion.div>
 
         {/* Headquarters */}
-        <div className="col-span-1">
-          <h4 className="font-mono text-[9px] uppercase tracking-[0.3em] text-muted-foreground mb-4">HQ</h4>
-          <ul className="space-y-2">
-            <li className="font-mono text-xs text-foreground/80 text-pretty">Tech Hub</li>
-            <li className="font-mono text-xs text-foreground/80 text-pretty">Integrated City</li>
+        <motion.div variants={itemVariants} className="col-span-1">
+          <h4 className="font-mono text-[9px] uppercase tracking-[0.3em] text-white/30 mb-6">HQ</h4>
+          <ul className="space-y-4">
+            <li className="font-mono text-xs text-white/60">Tech Hub</li>
+            <li className="font-mono text-xs text-white/60">Integrated City</li>
           </ul>
-        </div>
+        </motion.div>
 
         {/* Inquiries */}
-        <div className="col-span-1">
-          <h4 className="font-mono text-[9px] uppercase tracking-[0.3em] text-muted-foreground mb-4">Inquiries</h4>
-          <ul className="space-y-2">
-            <li>
-              <a
-                href="mailto:hello@meghamsys.io"
-                className="font-mono text-xs text-foreground/80 hover:text-accent transition-colors"
-              >
-                Email Us
-              </a>
-            </li>
-            <li className="font-mono text-xs text-foreground/80">+1 [SYSTEM] 000-0000</li>
+        <motion.div variants={itemVariants} className="col-span-1">
+          <h4 className="font-mono text-[9px] uppercase tracking-[0.3em] text-white/30 mb-6">Inquiries</h4>
+          <ul className="space-y-4">
+            <FooterLink href="mailto:hello@meghamsys.io">Email Us</FooterLink>
+            <li className="font-mono text-xs text-white/60">+1 [SYSTEM] 000-0000</li>
           </ul>
-        </div>
+        </motion.div>
 
         {/* Legal */}
-        <div className="col-span-1">
-          <h4 className="font-mono text-[9px] uppercase tracking-[0.3em] text-muted-foreground mb-4">Legal</h4>
-          <ul className="space-y-2">
-            <li className="font-mono text-xs text-foreground/80">Privacy</li>
-            <li className="font-mono text-xs text-foreground/80">Terms</li>
+        <motion.div variants={itemVariants} className="col-span-1">
+          <h4 className="font-mono text-[9px] uppercase tracking-[0.3em] text-white/30 mb-6">Legal</h4>
+          <ul className="space-y-4">
+            <FooterLink>Privacy</FooterLink>
+            <FooterLink>Terms</FooterLink>
           </ul>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
       {/* Bottom copyright */}
-      <div
-        ref={footerRef}
-        className="mt-24 pt-8 border-t border-border/20 flex flex-col md:flex-row md:items-center md:justify-between gap-4"
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ delay: 0.5 }}
+        className="mt-32 pt-8 border-t border-white/10 flex flex-col md:flex-row md:items-center md:justify-between gap-4 relative z-10"
       >
-        <p className="font-mono text-[10px] text-muted-foreground uppercase tracking-widest">
+        <p className="font-mono text-[10px] text-white/40 uppercase tracking-widest">
           © 2026 MEGHAMSYS. ALL RIGHTS RESERVED.
         </p>
-        <p className="font-mono text-[10px] text-muted-foreground">Architecting the future of enterprise systems.</p>
-      </div>
+        <p className="font-mono text-[10px] text-white/40">Architecting the future of enterprise systems.</p>
+      </motion.div>
     </section>
   )
+}
+
+function FooterLink({ children, href }: { children: React.ReactNode; href?: string }) {
+  const content = (
+    <span className="relative inline-block overflow-hidden group">
+      <span className="block font-mono text-xs text-white/60 transition-transform duration-300 group-hover:-translate-y-full group-hover:text-white">
+        {children}
+      </span>
+      <span className="absolute top-0 left-0 block font-mono text-xs text-white transition-transform duration-300 translate-y-full group-hover:translate-y-0">
+        {children}
+      </span>
+    </span>
+  )
+
+  if (href) {
+    return (
+      <li className="block w-fit">
+        <a href={href}>{content}</a>
+      </li>
+    )
+  }
+
+  return <li className="block w-fit cursor-default">{content}</li>
 }
